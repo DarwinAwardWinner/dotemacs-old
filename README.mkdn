@@ -1,0 +1,33 @@
+# My Emacs config
+
+This is the contents of my `~/.emacs.d`. Note that there is no
+`~/.emacs` file. Everything is inside the `.emacs.d` directory.
+
+## Init
+
+First, there are a couple of init files. First, `init.el`, which just
+loads `site-lisp/init.el`. This file is my main initialization file. I
+copied it from somewhere on the web and have since modified it
+heavily, but I guess it dodn't come with the URL in the file, and I
+can't find it anymore. If you recognize it, please tell me.
+
+The third init file, which is loaded from the second, is
+`site-lisp/el-get-init.el`, which is designed to bootstrap the
+[el-get](https://github.com/dimitri/el-get) package manager (though it
+uses my own [fork](https://github.com/DarwinAwardWinner/el-get), where
+has some additional features that I need.) This file contains a
+definition of all the other elisp packages that I want installed, and
+uses el-get to install them. Each package installed by el-get
+(including el-get itself) is placed in a named subdirectory in
+`site-lisp/el-get/`.
+
+## Settings
+
+In `site-lisp/settings/`, you will find a number of files ending in
+`-settings.el`. These are all settings files that both load the
+packages that I use and customize them to my liking.
+
+Note also that `site-lisp/custom.el` contains all the variables that I
+have set through `M-x customize`. Many of my settings files simply
+load a package and contain a commend directing you to edit the
+settings via the Custom interface.
