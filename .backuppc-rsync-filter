@@ -1,0 +1,9 @@
+## BackupPC Rsync Filter for ~/.emacs.d/
+
+## Exclude compiled elisp files
+- *.elc
+
+- tmp*
+- /auto-save-list
+- /session.*
+- /tramp
