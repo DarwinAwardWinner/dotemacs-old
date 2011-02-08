@@ -172,12 +172,28 @@
           `(:name ,(el-get-package-name-from-git url)
                   :type git
                   :url ,url))
-        '(;; URL's of packages to install via git
+        `(;; URL's of packages to install via git
           "git://github.com/k-talo/volatile-highlights.el.git"
           "git://git.naquadah.org/google-maps.git"
           "git://jblevins.org/git/markdown-mode.git"
           "git://github.com/jwiegley/regex-tool.git"
           "git@github.com:DarwinAwardWinner/cperl-mode.git"
+          ,@(mapcar
+             (lambda (name)
+               (format "git://github.com/emacsmirror/%s.git" name))
+             '(;; URL's of packages on emacsmirror
+               read-library
+               offlineimap
+               keydef
+               tooltip-help
+               smart-dash
+               smart-mark
+               sackspace
+               query
+               pointback
+               multi-eshell
+               eval-sexp-in-comments
+               ))
           ))
      ))
   (el-get 'sync))
