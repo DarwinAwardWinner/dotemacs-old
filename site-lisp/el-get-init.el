@@ -163,9 +163,10 @@
           "http://repo.or.cz/w/emacs.git/blob_plain/HEAD:/lisp/ido.el"
           "http://homepage1.nifty.com/bmonkey/emacs/elisp/tmenu.el"
           ))
+
      (:name ido-other-window
             :type git
-            :url "git://gist.github.com/493269.git")
+            :url "git@gist.github.com:817266.git")
 
      ,@(mapcar
         (lambda (url)
