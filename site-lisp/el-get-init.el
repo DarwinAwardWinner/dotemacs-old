@@ -188,39 +188,3 @@
 Mainly useful for the completion suggestions it provides."
   (interactive (list (el-get-read-recipe-name "Insert name of" 'required-match)))
   (insert recipe))
-
-(defvar el-get-legacy-recipes
-  '(
-    ;; Maybe enable this in the future
-    (:name eval-expr
-           :type http
-           :url "http://www.splode.com/~friedman/software/emacs-lisp/src/eval-expr.el")
-
-    ;; Haven't needed this yet
-    (:name obarray-fns
-           :type http
-           :url "http://www.splode.com/~friedman/software/emacs-lisp/src/obarray-fns.el")
-    ;; Not using this because I don't use keyboard macros enough
-    (:name emacros
-           :type http-tar
-           :url "http://thbecker.net/free_software_utilities/emacs_lisp/emacros/emacros.tar.gz")
-    ;; Not using anything
-    (:name anything-config
-           :type emacswiki)
-    ;; Not using this because it doesn't work with ido
-    (:name completing-help
-           :type http
-           :url "http://homepage1.nifty.com/bmonkey/emacs/elisp/completing-help.el")
-    ;; Not using anymore
-    escreen
-    ;; I use smart-compile instead
-    (:name mode-compile
-           :type http
-           :url "http://perso.tls.cena.fr/~boubaker/distrib/mode-compile.el")
-    ;; I don't use this
-    (:name rect-mark
-           :type emacswiki)
-
-    )
-
-  "Recipes for things that I had installed before switching to el-get.")
