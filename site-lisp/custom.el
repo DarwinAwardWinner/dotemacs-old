@@ -200,6 +200,7 @@
  '(list-directory-verbose-switches "-lh")
  '(longlines-auto-wrap nil)
  '(longlines-wrap-follows-window-size t)
+ '(magit-completing-read-function (quote ido-completing-read))
  '(magit-save-some-buffers nil)
  '(mail-host-address "aeolus")
  '(markdown-command "Markdown.pl")
