@@ -178,7 +178,7 @@
           "git://git.naquadah.org/google-maps.git"
           "git://jblevins.org/git/markdown-mode.git"
           "git://github.com/jwiegley/regex-tool.git"
-          "git@github.com:DarwinAwardWinner/cperl-mode.git"
+          "git://github.com/jrockway/cperl-mode.git"
           ,@(mapcar
              (lambda (name)
                (format "git://github.com/emacsmirror/%s.git" name))
