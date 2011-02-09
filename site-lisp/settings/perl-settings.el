@@ -4,7 +4,8 @@
 (require 'sepia)
 (defalias 'perl-mode 'sepia-mode)
 
-(add-hook 'sepia-mode-hook (lambda () (local-unset-key (kbd "TAB"))))
+;; Don't use sepia's special TAB functionality
+(define-key 'sepia-mode-map (kbd "TAB") nil)
 
 ;; (let ((perl-modes '(cperl-mode sepia-mode perl-mode)))
 ;;   (require (car perl-modes))
