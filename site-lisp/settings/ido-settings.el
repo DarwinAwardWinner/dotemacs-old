@@ -1,5 +1,5 @@
 (require 'ido)
-(require 'ido-other-window)
+(load "ido-other-window" 'noerror)
 
 ;; Replace completing-read wherever possible, unless directed otherwise
 (defadvice completing-read (around use-ido-when-possible activate)
