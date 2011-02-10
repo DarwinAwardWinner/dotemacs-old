@@ -5,7 +5,7 @@
 (defalias 'perl-mode 'sepia-mode)
 
 ;; Don't use sepia's special TAB functionality
-(define-key 'sepia-mode-map (kbd "TAB") nil)
+(define-key sepia-mode-map (kbd "TAB") nil)
 
 ;; (let ((perl-modes '(cperl-mode sepia-mode perl-mode)))
 ;;   (require (car perl-modes))
