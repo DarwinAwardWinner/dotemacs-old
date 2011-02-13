@@ -54,13 +54,16 @@ Optional arg BOUND is a buffer position not to search past."
 
 With optional arg FORCE, search for a module on current line even
 if the current buffer is not a perl-mode buffer."
-  (when (perl-buffer-is-perl-p)
-    (save-excursion
-      (let ((bound (progn
-                     (end-of-line)
-                     (point))))
-        (beginning-of-line)
-        (perl-next-module bound)))))
+  (if (or force (perl-buffer-is-perl-p))
+      (save-excursion
+        (let ((bound (progn
+                       (end-of-line)
+                       (point))))
+          (beginning-of-line)
+          (perl-next-module bound)))
+    (message "Current buffer is not a perl-mode buffer.")
+    ;; Need to return nil
+    nil))
 
 (defun perl-list-modules-in-buffer (&optional buf)
   "Return a list of all perl modules used or required in BUF.
@@ -108,10 +111,32 @@ is listed in `perl-major-modes'."
                      :test 'string=))
 
 (defun perl-install-module (modname &rest more-modules)
-  "Install a perl module (or modules) using cpanminus"
+  "Install a perl module (or modules) using cpanminus."
   (interactive (list
                 (completing-read "Module to install: "
                                  (perl-get-module-completions)
                                  nil nil nil nil
                                  (perl-module-on-current-line))))
-  (shell-command (format "cpanm %s &" (shell-quote-argument modname))))
+  (let ((shellbuf (get-buffer "*Async Shell Command*")))
+    (when shellbuf
+      (or (kill-buffer shellbuf)
+          (error "Could not kill previous shell command buffer."))))
+  (shell-command (format "cpanm %s &"
+                         (mapconcat 'shell-quote-argument
+                                    (cons modname more-modules)
+                                    " "))))
+
+(defun perl-install-all-modules-for-buffer (&optional buf force)
+  "Install all perl modules used by the code in buffer BUF.
+
+Default is current buffer."
+  (interactive)
+  (if (or force (perl-buffer-is-perl-p buf))
+      (perl-install-module (perl-list-modules-in-buffer buf))
+    (message "Current buffer is not a perl-mode buffer.")))
+
+(defun perl-install-all-modules-for-all-buffers (&optional buf)
+  "Install all perl modules used by the code in all open perl-mode buffers."
+  (interactive)
+  (perl-install-module (perl-list-modules-in-all-perl-buffers)))
+
