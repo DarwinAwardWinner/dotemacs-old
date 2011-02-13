@@ -1,6 +1,3 @@
-;;; Sepia mode (Part of Simple Emacs Perl InterAction),
-;; derived from cperl-mode, so replaces it
-
 (require 'cl)
 
 (defcustom perl-major-modes '(perl-mode cperl-mode sepia-mode)
@@ -122,12 +119,12 @@ is listed in `perl-major-modes'."
 Default is current buffer."
   (interactive)
   (if (or force (perl-buffer-is-perl-p buf))
-      (perl-install-module (perl-list-modules-in-buffer buf))
+      (apply 'perl-install-module (perl-list-modules-in-buffer buf))
     (error "Buffer \"%s\" is not a perl-mode buffer."
            (buffer-name (or buf (current-buffer))))))
 
 (defun perl-install-all-modules-for-all-buffers (&optional buf)
   "Install all perl modules used by the code in all open perl-mode buffers."
   (interactive)
-  (perl-install-module (perl-list-modules-in-all-perl-buffers)))
+  (apply 'perl-install-module (perl-list-modules-in-all-perl-buffers)))
 
