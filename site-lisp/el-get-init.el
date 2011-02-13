@@ -98,6 +98,7 @@
      paredit
      smex
      undo-tree
+     mode-compile
      pymacs
      python-mode
      ipython
