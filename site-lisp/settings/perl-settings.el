@@ -139,7 +139,8 @@ Default is current buffer."
   (interactive)
   (if (or force (perl-buffer-is-perl-p buf))
       (perl-install-module (perl-list-modules-in-buffer buf))
-    (message "Current buffer is not a perl-mode buffer.")))
+    (error "Buffer \"%s\" is not a perl-mode buffer."
+           (buffer-name (or buf (current-buffer))))))
 
 (defun perl-install-all-modules-for-all-buffers (&optional buf)
   "Install all perl modules used by the code in all open perl-mode buffers."
