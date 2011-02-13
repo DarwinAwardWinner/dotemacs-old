@@ -24,6 +24,12 @@
   :type '(repeat symbol)
   :group 'perl)
 
+(defcustom perl-module-install-command "cpanm %s"
+  "Command to install a list of perl modules.
+
+In the command, %s is replaced by a space-separated list of modules to be installed."
+  :type 'string)
+
 (defun perl-buffer-is-perl-p (&optional buf)
   "Return t if BUF is a perl-mode buffer.
 
@@ -111,7 +117,7 @@ is listed in `perl-major-modes'."
                      :test 'string=))
 
 (defun perl-install-module (modname &rest more-modules)
-  "Install a perl module (or modules) using cpanminus."
+  "Install a perl module (or modules)."
   (interactive (list
                 (completing-read "Module to install: "
                                  (perl-get-module-completions)
@@ -121,7 +127,7 @@ is listed in `perl-major-modes'."
     (when shellbuf
       (or (kill-buffer shellbuf)
           (error "Could not kill previous shell command buffer."))))
-  (shell-command (format "cpanm %s &"
+  (shell-command (format (concat perl-module-install-command " &")
                          (mapconcat 'shell-quote-argument
                                     (cons modname more-modules)
                                     " "))))
