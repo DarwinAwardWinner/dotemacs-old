@@ -2,22 +2,6 @@
 ;; derived from cperl-mode, so replaces it
 
 (require 'cl)
-(require 'sepia)
-(defalias 'perl-mode 'sepia-mode)
-
-;; Don't use sepia's special TAB functionality
-(define-key sepia-mode-map (kbd "TAB") nil)
-
-;; (let ((perl-modes '(cperl-mode sepia-mode perl-mode)))
-;;   (require (car perl-modes))
-
-;;   (loop for alist in `(,auto-mode-alist ,interpreter-mode-alist)
-;;         do (mapc (lambda (pair)
-;;                    (when (memq (cdr pair)
-;;                                perl-modes)
-;;                      (message (car pair))
-;;                      (setcdr pair 'cperl-mode)))
-;;                  alist)))
 
 (defcustom perl-major-modes '(perl-mode cperl-mode sepia-mode)
   "List of major modes that would be used for buffers of Perl code."
