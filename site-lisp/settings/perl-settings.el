@@ -83,18 +83,24 @@ is listed in `perl-major-modes'."
                              (perl-list-perl-buffers))
                      :test 'string=))
 
-(defun perl-get-module-completions ()
+(defun perl-get-module-completions (&optional installed)
   "Function to get completions for perl module names.
 
 Returns a list of all perl modules mentioned in any perl-mode
-buffer. If the current buffer is a perl-mode buffer, then modules
-mentioned in the current buffer are listed first.
+buffer. Modules listed in current buffer (if it is a perl-mode
+buffer) are listed first; then modules listed in any perl-mode
+buffer.
+
+With optional arg INSTALLED, all perl modules that are installed
+but not already mentioned are appended to the list.
 
 A buffer is considered to be a perl-mode buffer if its major mode
 is listed in `perl-major-modes'."
   (delete-duplicates (nconc (when (perl-buffer-is-perl-p (current-buffer))
                               (perl-list-modules-in-buffer (current-buffer)))
-                            (perl-list-modules-in-all-perl-buffers))
+                            (perl-list-modules-in-all-perl-buffers)
+                            (when installed
+                              (perl-list-all-installed-modules)))
                      :test 'string=))
 
 (defun perl-install-module (modname &rest more-modules)
@@ -115,6 +121,9 @@ is listed in `perl-major-modes'."
 
 (defun perl-install-all-modules-for-buffer (&optional buf force)
   "Install all perl modules used by the code in buffer BUF.
+
+With optional arg FORCE, installation will be carried out even if
+BUF is not a perl-mode buffer.
 
 Default is current buffer."
   (interactive)
