@@ -175,14 +175,14 @@
                   :type git
                   :url ,url))
         `(;; URL's of packages to install via git
-          "git://github.com/k-talo/volatile-highlights.el.git"
+          "https://github.com/k-talo/volatile-highlights.el.git"
           "git://git.naquadah.org/google-maps.git"
           "git://jblevins.org/git/markdown-mode.git"
-          "git://github.com/jwiegley/regex-tool.git"
-          "git://github.com/jrockway/cperl-mode.git"
+          "https://github.com/jwiegley/regex-tool.git"
+          "https://github.com/jrockway/cperl-mode.git"
           ,@(mapcar
              (lambda (name)
-               (format "git://github.com/emacsmirror/%s.git" name))
+               (format "https://github.com/emacsmirror/%s.git" name))
              '(;; URL's of packages on emacsmirror
                read-library
                offlineimap
