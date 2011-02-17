@@ -128,3 +128,4 @@ Default is current buffer."
   (interactive)
   (apply 'perl-install-module (perl-list-modules-in-all-perl-buffers)))
 
+(provide 'perl-settings)
