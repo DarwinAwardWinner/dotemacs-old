@@ -24,7 +24,8 @@
 (defun rename-file-and-buffer (new-name)
   "Renames both current buffer and file it's visiting to NEW-NAME."
   (interactive "sNew name: ")
-  (let ((filename (buffer-file-name)))
+  (let ((modp (buffer-modified-p))
+        (filename (buffer-file-name)))
     (if (not filename)
 	(message "Buffer '%s' is not visiting a file!" name)
       (let ((new-filename (concat (file-name-directory filename) new-name)))
@@ -32,7 +33,8 @@
           (when (file-exists-p filename)
             (rename-file filename new-filename 1))
           (rename-buffer new-name 'unique)
-          (set-visited-file-name new-filename))))))
+          (set-visited-file-name new-filename)
+          (set-buffer-modified-p modp))))))
 
 ;;
 ;; Never understood why Emacs doesn't have this function, either.
