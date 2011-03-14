@@ -1,5 +1,7 @@
 (require 'python-mode)
 
+(define-key py-mode-map (kbd "C-c C-m") nil)
+
 ;; Allow autopair to support python's triple quotes
 (eval-after-load 'autopair
   '(progn
