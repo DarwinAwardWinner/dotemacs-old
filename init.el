@@ -2,3 +2,4 @@
 (setq init-path (expand-file-name "~/.emacs.d/site-lisp"))
 (load-file (expand-file-name "init.el" init-path))
 (put 'autopair-newline 'disabled nil)
+(put 'downcase-region 'disabled nil)
