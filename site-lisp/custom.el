@@ -142,6 +142,7 @@
  '(eldoc-idle-delay 0.25)
  '(elscreen-buffer-list-enabled t)
  '(elscreen-tab-display-kill-screen (quote right))
+ '(emms-completing-read-function (quote completing-read))
  '(enable-recursive-minibuffers t)
  '(escreen-goto-screen-hook (quote (escreen-enable-number-mode-if-more-than-one-screen)))
  '(escreen-prefix-char "")

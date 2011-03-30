@@ -22,7 +22,7 @@
   (let ((current-prefix-arg t))
     (el-get-install "package24")))
 
-(el-get-init "package24" 'noerror)
+(el-get-init "package24")
 (require 'package)
 
 ;; Not evaluated
@@ -87,6 +87,7 @@
      browse-kill-ring
      clojure-mode
      dired+
+     emms
      full-ack
      highlight-parentheses
      magit
@@ -198,7 +199,7 @@
                ))
           ))
      ))
-  (el-get 'sync))
+  (el-get))
 
 (defun el-get-insert-recipe-name (recipe)
   "Prompt for the name of an existing recipe, then insert that name at point.
