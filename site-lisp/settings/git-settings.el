@@ -3,3 +3,5 @@
 
 (require 'magit)
 (global-set-key (kbd "C-c C-m") 'magit-status)
+
+(require 'git-wip-mode)
