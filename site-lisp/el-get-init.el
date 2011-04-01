@@ -199,7 +199,8 @@
                ))
           ))
      ))
-  (el-get))
+  ;; Must be SYNC because emacswiki does rate-limiting.
+  (el-get 'sync))
 
 (defun el-get-insert-recipe-name (recipe)
   "Prompt for the name of an existing recipe, then insert that name at point.
