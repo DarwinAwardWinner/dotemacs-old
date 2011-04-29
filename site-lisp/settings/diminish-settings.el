@@ -54,5 +54,8 @@ the arg must be quoted as a symbol, as in (diminish-undo 'diminished-modes)."
                                     (string :tag "Abbreviation")))
   :set 'diminish-setup)
 
+(defun diminish-init ()
+  (diminish-setup 'diminished-minor-modes diminished-minor-modes))
+
 (eval-after-load 'init
-  '(diminish-setup 'diminished-minor-modes diminished-minor-modes))
+  '(diminish-init))
