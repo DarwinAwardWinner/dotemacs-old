@@ -124,6 +124,7 @@
           rainbow-mode
           smart-operator
           wtf
+          yaml-mode
           ))
 
      ;; ,@(mapcar
