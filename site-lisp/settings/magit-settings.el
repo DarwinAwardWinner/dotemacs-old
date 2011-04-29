@@ -1,12 +1,12 @@
 (require 'magit)
 (global-set-key (kbd "C-c C-m") 'magit-status)
+(global-set-key (kbd "C-x g") 'magit-status)
 
 (defadvice magit-run* (around use-myinit activate)
   "use git-myinit instead of git-init"
   (when (equal (ad-get-arg 0) (list "git" "init"))
     (ad-set-arg 0 (list "git" "myinit")))
   ad-do-it)
-
 
 (defface magit-log-head-label-wip
   '((((class color) (background light))
