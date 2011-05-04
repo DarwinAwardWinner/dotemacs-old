@@ -182,6 +182,7 @@
           "git://jblevins.org/git/markdown-mode.git"
           "https://github.com/jwiegley/regex-tool.git"
           "https://github.com/jrockway/cperl-mode.git"
+          "https://github.com/sellout/emacs-color-theme-solarized.git"
           ,@(mapcar
              (lambda (name)
                (format "https://github.com/emacsmirror/%s.git" name))
