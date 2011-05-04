@@ -27,4 +27,10 @@ Even some places where ido doesn't already enable it."
       (ido-complete)
     (insert " ")))
 
+(eval-after-load 'mic-paren
+  '(defadvice mic-paren-highlight (around disable-inside-ido activate)
+     "Disable mic-paren highlighting in ido"
+     (unless (ido-active)
+       ad-do-it)))
+
 (provide 'ido-settings)
