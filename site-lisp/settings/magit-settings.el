@@ -1,6 +1,6 @@
 (require 'magit)
 (global-set-key (kbd "C-c C-m") 'magit-status)
-(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-c g") 'magit-status)
 
 (defadvice magit-run* (around use-myinit activate)
   "use git-myinit instead of git-init"
