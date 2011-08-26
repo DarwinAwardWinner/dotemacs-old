@@ -3,7 +3,7 @@
 
 ;; Replace completing-read wherever possible, unless directed otherwise
 (defadvice completing-read (around use-ido-when-possible activate)
-  "If `ido-everywhere' is t, then use ido-completing-read wherever possible.
+  "If `ido-everywhere' is t, then use `ido-completing-read' wherever possible.
 Even some places where ido doesn't already enable it."
   (if (or (not ido-mode)
           (not ido-everywhere)
