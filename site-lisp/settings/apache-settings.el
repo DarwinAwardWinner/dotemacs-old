@@ -3,7 +3,7 @@
 (add-to-list 'auto-mode-alist '("httpd\\.conf\\'"  . apache-mode))
 
 ;; Any *.conf in these directories will be opened in apache-mode
-(setq apache-conf-paths '("/etc/apache2" "/home/ryan/temp/automodetest/apache2"))
+(setq apache-conf-paths '("/etc/apache2"))
 
 (defun abspathp (path)
   (string= "/" (substring path 0 1)))
