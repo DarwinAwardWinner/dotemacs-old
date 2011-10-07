@@ -213,4 +213,8 @@ all absolute. if DIR is a file, an empty list is returned."
         (message "Cleaning stale elc file %s" elc)
         (delete-file elc)))))
 
+;; Scratch buffer sometimes fails to turn on font-lock-mode, so force
+;; it.
+(with-current-buffer "*scratch*" (font-lock-mode (if font-lock-mode 1 -1)))
+
 (provide 'misc-settings)
