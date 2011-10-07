@@ -1,8 +1,8 @@
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 100 :width normal :foundry "unknown" :family "Droid Sans Mono"))))
  '(cursor ((t (:background "black"))))
  '(diff-added ((t (:inherit diff-changed :foreground "#00aa00"))))
@@ -39,10 +39,10 @@
  '(yaoddmuse-tag ((t (:foreground "dark Goldenrod"))))
  '(yaoddmuse-url-name ((t (:foreground "dark Orange")))))
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(ac-comphist-file "/home/ryan/.emacs.d/persistence/ac-comphist.dat")
  '(ac-modes (quote (ess-mode emacs-lisp-mode lisp-interaction-mode c-mode cc-mode c++-mode java-mode malabar-mode clojure-mode scala-mode scheme-mode ocaml-mode tuareg-mode haskell-mode perl-mode cperl-mode sepia-mode python-mode ruby-mode ecmascript-mode javascript-mode js-mode js2-mode php-mode css-mode makefile-mode makefile-gmake-mode sh-mode fortran-mode f90-mode ada-mode xml-mode sgml-mode)))
  '(ack-arguments (quote ("-i")))
@@ -334,7 +334,7 @@ done_testing();")
  '(ropemacs-completing-read-function (quote completing-read))
  '(ropemacs-enable-shortcuts nil)
  '(ropemacs-guess-project t)
- '(safe-local-variable-values (quote ((org-time-stamp-custom-formats "<%Y-%m-%d %a>" . "<%I:%M %p>") (org-time-stamp-custom-formats "<%m/%d/%y %a>" . "<%m/%d/%y %a %H:%M>") (org-time-stamp-custom-formats quote ("<%m/%d/%y %a>" . "<%m/%d/%y %a %H:%M>")) (folded-file . t) (TeX-master . cv\.ltx) (TeX-master . cv\.tex) (TeX-master . t))))
+ '(safe-local-variable-values (quote ((eval set-face-attribute (quote whitespace-line) nil :background "red1" :foreground "yellow" :weight (quote bold)) (eval set-face-attribute (quote whitespace-tab) nil :background "red1" :foreground "yellow" :weight (quote bold)) (whitespace-style face trailing lines-tail) (whitespace-line-column . 80) (eval require (quote whitespace)) (org-time-stamp-custom-formats "<%Y-%m-%d %a>" . "<%I:%M %p>") (org-time-stamp-custom-formats "<%m/%d/%y %a>" . "<%m/%d/%y %a %H:%M>") (org-time-stamp-custom-formats quote ("<%m/%d/%y %a>" . "<%m/%d/%y %a %H:%M>")) (folded-file . t) (TeX-master . cv\.ltx) (TeX-master . cv\.tex) (TeX-master . t))))
  '(save-abbrevs (quote silently))
  '(save-place t nil (saveplace))
  '(save-place-file "~/.emacs.d/persistence/saveplace")
