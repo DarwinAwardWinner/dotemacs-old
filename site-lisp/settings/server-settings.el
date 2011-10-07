@@ -16,11 +16,12 @@ Use with caution."
   (server-force-delete)
   (server-start))
 
-;; ;; Don't start the server unless we can verify that it isn't running.
-;; ;; And Don't complain if it doesn't.
-;; (when (and (functionp 'server-running-p) (not (server-running-p)))
-;;   (ignore-errors (server-start)))
-(add-hook 'after-init-hook 'server-force-start)
+;; When running as a daemon, start the server, forcibly blowing away
+;; any previous server that may have been running.
+(add-hook 'after-init-hook
+          (lambda ()
+            (when (daemonp)
+              (server-force-start))))
 
 
 (defun server-force-kill ()
