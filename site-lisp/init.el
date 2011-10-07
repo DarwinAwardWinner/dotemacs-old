@@ -137,7 +137,7 @@ new directories are prepended to emacs's initial Info path."
 ;;; settings files
 (setq running-xemacs (string-match "XEmacs" (emacs-version)))
 
-;; Fire up el-get first, before loading any other packages.
+;;; Fire up el-get first, before loading any other packages.
 (load-file (expand-file-name "el-get-init.el" init-path))
 
 ;;; Load ~/elisp/settings/*-settings.el, in sorted order.
