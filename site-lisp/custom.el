@@ -212,6 +212,7 @@
  '(matlab-auto-fill nil)
  '(matlab-fill-code t)
  '(menu-bar-mode nil)
+ '(message-log-max 10000)
  '(mew-config-alist (quote (("UVA Mail" ("name" . "Ryan C. Thompson") ("user" . "ryan") ("mail-domain" . "virginia.edu") ("proto" . "%") ("imap-user" . "rct2c@virginia.edu") ("imap-server" . "imap.gmail.com") ("imap-ssl" . t) ("imap-ssl-port" . "993") ("imap-delete") \.\.\.) ("Gmail" ("name" . "Ryan C. Thompson") ("user" . "ryan") ("mail-domain" . "gmail.com") ("proto" . "%") ("imap-user" . "darwinawdwinner") ("imap-server" . "imap.gmail.com") ("imap-ssl" . t) ("imap-ssl-port" . "993") ("imap-delete") \.\.\.))))
  '(midnight-delay "4:00am")
  '(midnight-mode t nil (midnight))
