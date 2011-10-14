@@ -53,6 +53,7 @@
     full-ack
     highlight-parentheses
     magit
+    magithub
     nav
     notify
     nxhtml
@@ -82,7 +83,8 @@
     iresize
     kill-ring-search
     parenface
-    rainbow-mode
+    rainbow-
+    mode
     smart-operator
     wtf
     yaml-mode
@@ -116,77 +118,80 @@
     ))
 
 ;; Look in ~/.emacs.d/el-get/el-get/recipes/ for known recipes
-(progn
-  (setq
-   el-get-sources
-   (append
-    ;; Don't compile el-get, because I've been modifying it so often.
-    `((:name el-get
-             :compile nil
-             :type git
-             :url ,el-get-git-install-url
-             :branch "build-fix"))
+(setq
+ el-get-sources
+ (append
+  ;; Don't compile el-get, because I've been modifying it so often.
+  `((:name el-get
+           :website "https://github.com/dimitri/el-get#readme"
+           :description "Manage the external elisp bits and pieces you depend upon."
+           :type git
+           :branch "reload"
+           :url ,el-get-git-install-url
+           :features el-get
+           :load    "el-get.el"
+           :compile "el-get.el"))
 
-    el-get-sources-from-recipes
+  el-get-sources-from-recipes
 
-    (mapcar (lambda (pkg) `(:name ,pkg :type elpa))
-            el-get-sources-from-elpa)
+  (mapcar (lambda (pkg) `(:name ,pkg :type elpa))
+          el-get-sources-from-elpa)
 
-    (mapcar (lambda (pkg) `(:name ,pkg :type emacswiki))
-            el-get-sources-from-emacswiki)
+  (mapcar (lambda (pkg) `(:name ,pkg :type emacswiki))
+          el-get-sources-from-emacswiki)
 
-    (mapcar (lambda (url)
-              `(:name ,(el-get-package-name-from-url url)
-                      :type http
-                      :url ,url))
-            el-get-sources-from-http)
+  (mapcar (lambda (url)
+            `(:name ,(el-get-package-name-from-url url)
+                    :type http
+                    :url ,url))
+          el-get-sources-from-http)
 
-    ;; This one is special because the name can't be auto-determined.
-    '((:name ido-other-window
-             :type git
-             :url "git@gist.github.com:817266.git"))
-    ;; Special because I need a specific branch
-    '((:name ido-ubiquitous
-             :type git
-             :url "https://github.com/DarwinAwardWinner/ido-ubiquitous.git"
-             :branch "func-except"))
-    `(
-      ,@(mapcar
-         (lambda (url)
-           `(:name ,(el-get-package-name-from-git url)
-                   :type git
-                   :url ,url))
-         `(;; URL's of packages to install via git
-           "git://git.naquadah.org/google-maps.git"
-           "git://jblevins.org/git/markdown-mode.git"
-           "https://github.com/k-talo/volatile-highlights.el.git"
-           "https://github.com/jwiegley/regex-tool.git"
-           "https://github.com/jrockway/cperl-mode.git"
+  ;; This one is special because the name can't be auto-determined.
+  '((:name ido-other-window
+           :type git
+           :url "git@gist.github.com:817266.git"))
+  ;; Special because I need a specific branch
+  '((:name ido-ubiquitous
+           :type git
+           :url "https://github.com/DarwinAwardWinner/ido-ubiquitous.git"
+           :branch "func-except"))
+  `(
+    ,@(mapcar
+       (lambda (url)
+         `(:name ,(el-get-package-name-from-git url)
+                 :type git
+                 :url ,url))
+       `(;; URL's of packages to install via git
+         "git://git.naquadah.org/google-maps.git"
+         "git://jblevins.org/git/markdown-mode.git"
+         "https://github.com/k-talo/volatile-highlights.el.git"
+         "https://github.com/jwiegley/regex-tool.git"
+         "https://github.com/jrockway/cperl-mode.git"
 
-           ,@(mapcar
-              (lambda (name)
-                (format "https://github.com/emacsmirror/%s.git" name))
-              '(;; URL's of packages on emacsmirror
-                read-library
-                offlineimap
-                keydef
-                tooltip-help
-                smart-dash
-                smart-mark
+         ,@(mapcar
+            (lambda (name)
+              (format "https://github.com/emacsmirror/%s.git" name))
+            '(;; URL's of packages on emacsmirror
+              read-library
+              offlineimap
+              keydef
+              tooltip-help
+              smart-dash
+              smart-mark
 
-                sackspace
-                query
-                pointback
-                multi-eshell
-                eval-sexp-in-comments
-                ))
-           ))
-      ))
-   )
-  (let ((el-get-source-names
-         (mapcar 'el-get-source-name el-get-sources)))
+              sackspace
+              query
+              pointback
+              multi-eshell
+              eval-sexp-in-comments
+              ))
+         ))
+    ))
+ )
+(let ((el-get-source-names
+       (mapcar 'el-get-source-name el-get-sources)))
   ;; Must be SYNC because emacswiki does rate-limiting.
-    (apply 'el-get 'sync el-get-source-names)))
+  (apply 'el-get 'sync el-get-source-names))
 
 (defun el-get-insert-recipe-name (recipe)
   "Prompt for the name of an existing recipe, then insert that name at point.
