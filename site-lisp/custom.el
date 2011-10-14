@@ -188,6 +188,7 @@
  '(ido-save-directory-list-file "~/.emacs.d/persistence/ido.last")
  '(ido-ubiquitous t)
  '(ido-use-filename-at-point (quote guess))
+ '(ido-use-virtual-buffers t)
  '(ido-yes-or-no-mode t)
  '(indent-tabs-mode nil)
  '(indicate-buffer-boundaries (quote left))
