@@ -33,4 +33,4 @@
            (mapcar 'eval
                    functions))))
 
-(update-smex-after 'load 'eval-last-sexp 'eval-buffer)
+(update-smex-after 'load 'eval-last-sexp 'eval-buffer 'eval-region)
