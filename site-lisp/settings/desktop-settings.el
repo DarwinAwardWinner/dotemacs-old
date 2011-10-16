@@ -27,7 +27,8 @@ Also returns nil if pid is nil."
         ad-do-it)
     ad-do-it))
 
-(add-hook 'after-init-hook
-          (lambda ()
-            (desktop-read)
-            (desktop-save-mode 1)))
+;; Load the desktop *after* all init stuff is done
+(eval-after-load 'init
+  '(progn
+     ;; (desktop-read)
+     (desktop-save-mode 1)))
