@@ -17,11 +17,13 @@ Use with caution."
   (server-start))
 
 ;; When running as a daemon, start the server, forcibly blowing away
-;; any previous server that may have been running.
+;; any previous server that may have been running. If not running as a
+;; daemon, just start the server if it isn't already started.
 (add-hook 'after-init-hook
           (lambda ()
-            (when (daemonp)
-              (server-force-start))))
+            (if (daemonp)
+                (server-force-start)
+              (ignore-errors (server-start)))))
 
 
 (defun server-force-kill ()
