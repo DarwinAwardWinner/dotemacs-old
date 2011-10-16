@@ -27,6 +27,11 @@ Also returns nil if pid is nil."
         ad-do-it)
     ad-do-it))
 
+(defadvice desktop-read (around avoid-redundant-read activate)
+  (if (and (desktop-owner) (= (desktop-owner) (emacs-pid)))
+      (message "Desktop file already loaded. Skipping reload.")
+    ad-do-it))
+
 ;; Load the desktop *after* all init stuff is done
 (eval-after-load 'init
   '(progn
