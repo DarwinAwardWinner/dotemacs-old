@@ -26,3 +26,8 @@ Also returns nil if pid is nil."
       (let ((enable-local-variables :safe))
         ad-do-it)
     ad-do-it))
+
+(add-hook 'after-init-hook
+          (lambda ()
+            (desktop-read)
+            (desktop-save-mode 1)))
