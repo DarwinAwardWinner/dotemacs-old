@@ -9,6 +9,10 @@
         )
       autopair-disable-mode-hooks)
 
+(defadvice autopair-on (around ignore-errors activate)
+  "Don't raise an error when autopair-on fails"
+  (ignore-errors ad-do-it))
+
 (setq autopair-autowrap t)              ; Enable autowrapping
 (setq autopair-skip-whitespace t)
 (autopair-global-mode 1) ;; to enable in all buffers
