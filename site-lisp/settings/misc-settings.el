@@ -63,9 +63,9 @@ manpage of a `current-word'."
 (global-set-key (kbd "<C-down-mouse-2>")
                 (lambda () (interactive) (text-scale-increase  0)))
 
-(defun set-default-face-after-making-x-frame (frame)
+(defun set-default-face-after-making-x-frame (&rest ignore)
   "Used to work around the limitations of emacs --daemon, which breaks when you set the default face via custom-set-faces."
-  (when window-system (set-face-attribute 'default nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant 'normal :weight 'normal :height 103 :width 'normal :foundry "unknown" :family "Droid Sans Mono")))
+  (when window-system (set-face-attribute 'default nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant 'normal :weight 'normal :height 100 :width 'normal :foundry "unknown" :family "Ubuntu Mono")))
 
 ;; (message nil) clears the minibuffer, restoring the prompt
 (add-hook 'auto-save-hook #'(lambda () (message nil)) 'append)
