@@ -9,9 +9,9 @@
         )
       autopair-disable-mode-hooks)
 
-(autopair-global-mode t) ;; to enable in all buffers
 (setq autopair-autowrap t)              ; Enable autowrapping
 (setq autopair-skip-whitespace t)
+(autopair-global-mode 1) ;; to enable in all buffers
 
 
 
