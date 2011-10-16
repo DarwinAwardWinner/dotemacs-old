@@ -83,8 +83,7 @@
     iresize
     kill-ring-search
     parenface
-    rainbow-
-    mode
+    rainbow-mode
     smart-operator
     wtf
     yaml-mode
