@@ -84,6 +84,8 @@
     kill-ring-search
     parenface
     rainbow-mode
+    marmalade
+    furl
     smart-operator
     wtf
     yaml-mode
