@@ -1,6 +1,5 @@
 (require 'ido)
 (load "ido-other-window" 'noerror)
-(load "ido-ubiquitous" 'noerror)
 (load "ido-yes-or-no" 'noerror)
 
 (defadvice ido-complete-space (around handle-require-match activate)
