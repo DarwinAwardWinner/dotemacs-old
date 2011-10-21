@@ -153,7 +153,7 @@
   '((:name ido-ubiquitous
            :type git
            :url "https://github.com/DarwinAwardWinner/ido-ubiquitous.git"
-           :branch "func-except"))
+           :branch "master"))
   `(
     ,@(mapcar
        (lambda (url)
