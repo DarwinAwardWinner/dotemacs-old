@@ -112,7 +112,7 @@
 (defvar el-get-sources-from-http
   '(
     "http://download.tuxfamily.org/user42/quick-yes.el"
-    "http://repo.or.cz/w/emacs.git/blob_plain/HEAD:/lisp/ido.el"
+    ;; "http://repo.or.cz/w/emacs.git/blob_plain/HEAD:/lisp/ido.el"
     "http://homepage1.nifty.com/bmonkey/emacs/elisp/tmenu.el"
     ))
 
