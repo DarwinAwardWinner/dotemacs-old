@@ -189,10 +189,8 @@
          ))
     ))
  )
-(let ((el-get-source-names
-       (mapcar 'el-get-source-name el-get-sources)))
-  ;; Must be SYNC because emacswiki does rate-limiting.
-  (apply 'el-get 'sync el-get-source-names))
+(loop for source in el-get-sources
+      do (ignore-errors (el-get 'sync (list (el-get-source-name source)))))
 
 (defun el-get-insert-recipe-name (recipe)
   "Prompt for the name of an existing recipe, then insert that name at point.
