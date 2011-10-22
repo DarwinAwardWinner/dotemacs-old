@@ -127,7 +127,7 @@ then you must specify that window's frame as well."
   "Visit `NAME'-settings.el in `init-settings-path`.
 
 If `NAME' is nil or empty string, open the settings directory."
-  (interactive (list (completing-read "Settings file:" (settings-file-stems))))
+  (interactive (list (completing-read "Settings file: " (settings-file-stems))))
   (if (or (not name) (= 0 (length name)))
       (find-file init-settings-path)
     (find-file (expand-file-name (concat name "-settings.el") init-settings-path))))
