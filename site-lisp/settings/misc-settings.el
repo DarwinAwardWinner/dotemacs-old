@@ -132,32 +132,35 @@ If `NAME' is nil or empty string, open the settings directory."
       (find-file init-settings-path)
     (find-file (expand-file-name (concat name "-settings.el") init-settings-path))))
 
-(defun make-list-string (items &optional recursed)
+(defun make-list-string (items)
   "Makes an English-style list from a list of strings.
 
 Converts a list of strings into a string that lists the items
 separated by commas, as well as the word `and' before the last
 item. In other words, returns a string of the way those items
 would be listed in english."
-  (cond ((not (first items))
+  (assert (listp items))
+  (cond ((null items)
          ;; Zero items
          "")
-        ((not (rest items))
+        ((null (cdr items))
          ;; One item
          (assert (stringp (first items)))
-         (first items))
-        ((not (rest (rest items)))
+         (format "%s" (first items)))
+        ((null (cddr items))
          ;; Two items
+         (assert (stringp (first items)))
          (assert (stringp (second items)))
-         ;; Only use a comma for 3 or more items, as indicated by
-         ;; recursion.
-         (let ((format-string (if recursed
-                                  "%s, and %s"
-                                "%s and %s")))
-           (format format-string (first items) (second items))))
-        ;; More than two items: use recursion
+         (apply 'format "%s and %s" items))
+        ((null (cdddr items))
+         ;; Three items
+         (assert (stringp (first items)))
+         (assert (stringp (second items)))
+         (assert (stringp (third items)))
+         (apply 'format "%s, %s, and %s" items))
         (t
-         (format "%s, %s" (first items) (make-list-string (rest items) 'recursed)))))
+         ;; 4 or more items
+         (format "%s, %s" (first items) (make-list-string (rest items))))))
 
 (defun twiddle-mode (mode)
   "If MODE is activated, then deactivate it and then activate it again.
