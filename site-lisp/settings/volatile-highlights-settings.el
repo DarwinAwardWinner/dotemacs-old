@@ -13,7 +13,7 @@
         (vhl/add pos (+ pos 1))
       (vhl/add (- pos 1) pos))))
 
-(defadvice vhl/.make-vhl-on-change (after highliegh-deletions activate)
+(defadvice vhl/.make-vhl-on-change (after highlight-deletions activate)
   "Also highlight the position where something was deleted."
   (when (not (zerop len-removed))
     (vhl/add-position beg)))
