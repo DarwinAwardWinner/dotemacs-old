@@ -84,6 +84,7 @@
     kill-ring-search
     parenface
     rainbow-mode
+    rainbow-delimiters
     marmalade
     furl
     smart-operator

@@ -159,6 +159,7 @@
  '(global-hl-line-mode nil)
  '(global-linum-mode nil)
  '(global-pabbrev-mode t)
+ '(global-rainbow-delimiters-mode t)
  '(global-remapping-alist (quote ((list-buffers . electric-buffer-list) (apropos-command . apropos) (move-beginning-of-line . back-to-indentation))))
  '(global-smart-tab-mode nil)
  '(global-undo-tree-mode t)
