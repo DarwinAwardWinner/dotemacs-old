@@ -51,7 +51,6 @@
          ,off-doc-string
          (interactive)
          ,off-body-form)
-       ;; Don't return anything funny. This is a serious program.
        nil)
 ))
 
