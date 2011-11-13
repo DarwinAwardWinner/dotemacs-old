@@ -169,6 +169,7 @@
          "https://github.com/k-talo/volatile-highlights.el.git"
          "https://github.com/jwiegley/regex-tool.git"
          "https://github.com/jrockway/cperl-mode.git"
+         "https://github.com/juster/Sepia.git"
 
          ,@(mapcar
             (lambda (name)
