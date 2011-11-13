@@ -1,1 +1,1 @@
-(setq redisplay-dont-pause t)
+(setq redisplay-dont-pause nil)
