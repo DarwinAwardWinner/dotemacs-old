@@ -18,3 +18,7 @@
     (delete-region beg end)
     (insert newtext)))
 
+;; Trailing whitespace is significant in Markdown, so don't mess with it
+(defadvice delete-trailing-whitespace (around disable-in-markdown activate)
+  (unless (eq major-mode 'markdown-mode)
+    ad-do-it))
