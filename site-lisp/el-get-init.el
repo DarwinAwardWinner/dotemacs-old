@@ -41,7 +41,8 @@
 
 ;; Packages to install from existing recipes
 (defvar el-get-sources-from-recipes
-  '(apel
+  '(anything
+    apel
     auto-complete
     auto-install
     autopair
