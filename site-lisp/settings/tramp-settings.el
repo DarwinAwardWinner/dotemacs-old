@@ -93,3 +93,48 @@ PROGRAMS can be a list of strings, or a single string."
 
 (defadvice tramp-cleanup-all-connections (after cleanup-control-files activate)
   (ssh-cleanup))
+
+(defun .first-three-equal (seq1 seq2 &optional compare-fun)
+  (unless compare-fun
+    (setq compare-fun 'equal))
+  (loop for i from 0 upto 2
+        unless (funcall compare-fun (elt seq1 i) (elt seq2 i))
+        return nil
+        finally (return t)))
+
+(defun tramp-same-server (path1 path2)
+  (if (tramp-tramp-file-p path1)
+      (if (tramp-tramp-file-p path2)
+          ;; Both TRAMP files
+          (first-three-equal
+           (tramp-dissect-file-name path1)
+           (tramp-dissect-file-name path2))
+        ;; Only path1 is TRAMP
+        nil)
+    (if (tramp-tramp-file-p path2)
+        ;; Only path2 is TRAMP
+        nil
+      ;; Neither one is TRAMP
+      t)))
+
+(defun tramp-substitute-server (old new)
+  "Substitute NEW in place of OLD in `buffer-file-name' of all buffers.
+
+OLD and NEW should be TRAMP server specifications, like \"ssh:HOSTNAME:\"."
+  (interactive "sOld TRAMP server: \nsNew TRAMP server: ")
+  (let ((oldvec (tramp-dissect-file-name (concat "/" old ":")))
+        (newvec (tramp-dissect-file-name (concat "/" new ":"))))
+    ;; Want no filename here
+    (assert (string= (elt oldvec 3) "") t)
+    (assert (string= (elt newvec 3) "") t)
+    (loop for buf in (buffer-list)
+          do (with-current-buffer buf
+               (when (tramp-tramp-file-p buffer-file-name)
+                 (let ((buffer-tramp-vec (tramp-dissect-file-name buffer-file-name)))
+                   (when (.first-three-equal oldvec buffer-tramp-vec)
+                     (setq buffer-file-name
+                           (tramp-make-tramp-file-name
+                            (elt newvec 0)
+                            (elt newvec 1)
+                            (elt newvec 2)
+                            (elt buffer-tramp-vec 3))))))))))
