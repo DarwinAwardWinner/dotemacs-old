@@ -16,10 +16,12 @@ If BUF is nil, check the current buffer."
        ;; Empty or starts with #!perl
        (or
         (= (buffer-size) 0)
-        (progn
-          (save-excursion
-            (goto-char (point-min))
-            (looking-at-p "#![^\n]*perl"))))))))
+        (save-excursion
+          (goto-char (point-min))
+          (looking-at-p "#![^\n]*perl"))
+        (save-excursion
+          (goto-char (point-min))
+          (search-forward-regexp (concat "^[[:space:]]*" (regexp-quote "use Test::")) nil 'noerror)))))))
 
 (defcustom perl-test-file-boilerplate
   "#!perl"
@@ -31,8 +33,10 @@ A trailing newline will always be added, so you can leave it off."
 (defun perl-test-file-do-setup (&optional buf)
   "Set up a new perl test file to be font-locked as perl.
 
-Simply insert `perl-test-file-boilerplate' if the file is empty, then call `normal-mode' to set up
-Mostly, just add #!perl to the beginning so that it gets recognized as a perl-mode file, and set the current major mode appropriately using `normal-mode'."
+Simply insert `perl-test-file-boilerplate' if the file is empty,
+then call `normal-mode' to set up. Mostly, just add #!perl to the
+beginning so that it gets recognized as a perl-mode file, and
+call `perl-mode' to set the major mode."
 
   ;; Recursion protect
   (when (not (boundp 'perl-test-file-already-setup))
@@ -45,7 +49,7 @@ Mostly, just add #!perl to the beginning so that it gets recognized as a perl-mo
           (insert "\n")
           (set-buffer-modified-p previous-buffer-modified-state)))
 
-      (normal-mode))))
+      (perl-mode))))
 
 (add-to-list 'magic-fallback-mode-alist
              '(perl-test-file-p . perl-test-file-do-setup))
