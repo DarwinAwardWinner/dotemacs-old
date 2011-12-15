@@ -1,9 +1,10 @@
 (require 'python-mode)
 
 (define-key py-mode-map (kbd "C-c C-m") nil)
+(define-key py-mode-map (kbd "C-<backspace>") nil)
 
 ;; Allow autopair to support python's triple quotes
-(eval-after-load 'autopair
+(eval-after-load "autopair"
   '(progn
      (add-hook 'python-mode-hook
                (lambda ()
@@ -13,7 +14,7 @@
 
 (require 'pymacs)
 (pymacs-load "ropemacs" "rope-")
-(eval-after-load 'auto-complete
+(eval-after-load "auto-complete"
   '(progn
      (ac-ropemacs-initialize)
      (add-hook 'python-mode-hook
@@ -40,7 +41,7 @@
 (define-key py-mode-map (kbd "C-c h") 'pylookup-lookup)
 
 ;; Flymake
-(eval-after-load 'flymake
+(eval-after-load "flymake"
   '(progn
      (defun flymake-pylint-init ()
        (let* ((temp-file (flymake-init-create-temp-buffer-copy
