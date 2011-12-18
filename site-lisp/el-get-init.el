@@ -63,7 +63,10 @@
     paredit
     smex
     undo-tree
-    mode-compile
+    (mode-compile
+     :before (lambda ()
+               (when (fboundp 'define-obsolete-variable-alias)
+                 (provide 'obsolete))))
     pymacs
     python-mode
     ipython
