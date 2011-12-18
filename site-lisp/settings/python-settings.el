@@ -11,6 +11,20 @@
       (goto-char (+ (point-at-bol) (current-indentation)))
       ad-do-it)))
 
+(defcustom py-electric-colon-dedent-only nil
+  "Only allow py-electric-colon to dedent a line, not indent it further."
+  :type 'boolean)
+
+(defadvice py-electric-colon (around dedent-only activate)
+  (if py-electric-colon-dedent-only
+      (let ((indentation-before (current-indentation)))
+        ad-do-it
+        (when (> (current-indentation) indentation-before)
+          (save-excursion
+            (beginning-of-line)
+            (delete-forward-char (- (current-indentation) indentation-before)))))
+    ad-do-it))
+
 ;; Allow autopair to support python's triple quotes
 (eval-after-load "autopair"
   '(progn
