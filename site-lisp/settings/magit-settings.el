@@ -67,3 +67,25 @@
      string-refs
      (when message
        (propertize message 'face 'magit-log-message)))))
+
+;; Ignore TRAMP errors
+(defun magit-revert-buffers (dir &optional ignore-modtime)
+  (dolist (buffer (buffer-list))
+    (when (and buffer
+	       (buffer-file-name buffer)
+               (prog1 1 (message "Checking file %s" (buffer-file-name buffer)))
+	       (magit-string-has-prefix-p (buffer-file-name buffer) dir)
+	       (not (buffer-modified-p buffer))
+               (prog1 t (message "Actually checking file %s" (buffer-file-name buffer)))
+               (or ignore-modtime (ignore-errors (not (verify-visited-file-modtime buffer))))
+               (ignore-errors (file-readable-p (buffer-file-name buffer))))
+      (with-current-buffer buffer
+	(condition-case var
+            (revert-buffer t t nil)
+	  (error (let ((signal-data (cadr var)))
+		   (cond (t (magit-bug-report signal-data))))))))))
+
+;; Ignore TRAMP errors
+(defadvice magithub-try-enabling-minor-mode (around ignore-errors activate)
+  (ignore-errors
+    ad-do-it))
