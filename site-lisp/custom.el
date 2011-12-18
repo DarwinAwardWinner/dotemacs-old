@@ -130,7 +130,7 @@
  '(desktop-save-mode nil)
  '(develock-auto-enable nil)
  '(dict-server "localhost")
- '(diff-switches "-u")
+ '(diff-switches "-u -w")
  '(diminished-minor-modes (quote ((volatile-highlights-mode . "") (eldoc-mode . "") (filladapt-mode . "") (highlight-parentheses-mode . "") (autopair-mode . "") (auto-complete-mode . "") (cua-mode . ""))))
  '(dired-listing-switches "-alh")
  '(dired-mode-hook (quote ((lambda nil (if (and (boundp (quote font-lock-maximum-decoration)) font-lock-maximum-decoration) (set (make-local-variable (quote font-lock-defaults)) (quote (diredp-font-lock-keywords-1 t))))) dired-extra-startup (lambda nil (dired-omit-mode 1)))))
