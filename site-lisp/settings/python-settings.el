@@ -3,6 +3,14 @@
 (define-key py-mode-map (kbd "C-c C-m") nil)
 (define-key py-mode-map (kbd "C-<backspace>") nil)
 
+(defadvice py-indent-line (around save-excursion activate)
+  "Prevent [TAB] from moving point to the beginning of the line."
+  (if (<= (point) (+ (point-at-bol) (current-indentation)))
+      ad-do-it
+    (save-excursion
+      (goto-char (+ (point-at-bol) (current-indentation)))
+      ad-do-it)))
+
 ;; Allow autopair to support python's triple quotes
 (eval-after-load "autopair"
   '(progn
