@@ -4,7 +4,10 @@
 (define-key py-mode-map (kbd "C-<backspace>") nil)
 
 (defadvice py-indent-line (around save-excursion activate)
-  "Prevent [TAB] from moving point to the beginning of the line."
+  "Prevent [TAB] from moving point to the beginning of the line.
+
+This makes Python's indentation behavior consistent with all
+other modes."
   (if (<= (point) (+ (point-at-bol) (current-indentation)))
       ad-do-it
     (save-excursion
@@ -16,6 +19,7 @@
   :type 'boolean)
 
 (defadvice py-electric-colon (around dedent-only activate)
+  "Only allow py-electric-colon to dedent a line, not indent it further."
   (if py-electric-colon-dedent-only
       (let ((indentation-before (current-indentation)))
         ad-do-it
