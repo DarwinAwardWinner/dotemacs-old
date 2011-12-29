@@ -9,7 +9,9 @@
 This makes Python's indentation behavior consistent with all
 other modes."
   (if (<= (point) (+ (point-at-bol) (current-indentation)))
-      ad-do-it
+      (progn
+        (goto-char (+ (point-at-bol) (current-indentation)))
+        ad-do-it)
     (save-excursion
       (goto-char (+ (point-at-bol) (current-indentation)))
       ad-do-it)))
