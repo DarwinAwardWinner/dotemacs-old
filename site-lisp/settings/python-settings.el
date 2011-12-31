@@ -3,6 +3,34 @@
 (define-key py-mode-map (kbd "C-c C-m") nil)
 (define-key py-mode-map (kbd "C-<backspace>") nil)
 
+(defun py-comment-insert-comment-function ()
+  """If point matches indentation of next line, don't change it."
+  (let (comment-insert-comment-function ;Prevent recursion
+        (current-indent (- (point) (line-beginning-position)))
+        (prev-indent (save-excursion
+                       (py-beginning-of-statement)
+                       (current-indentation)))
+        (next-indent (save-excursion
+                       (py-goto-statement-below)
+                       (current-indentation))))
+    (cond ((= current-indent next-indent)
+           ;; Point matches next indentation, so don't change it
+           (insert "# "))
+          ;; Anything else
+          (t (call-interactively 'comment-dwim)))))
+
+(add-hook 'python-mode-hook
+          (lambda ()
+            (set (make-local-variable 'comment-insert-comment-function)
+                 'py-comment-insert-comment-function)))
+
+;; Make sure we clean up when switching out of python mode
+(add-hook 'after-change-major-mode-hook
+          (lambda ()
+            (when (and (eq comment-insert-comment-function 'py-comment-insert-comment-function)
+                       (not (eq major-mode 'python-mode)))
+              (set (make-local-variable 'comment-insert-comment-function) nil))))
+
 (defadvice py-indent-line (around save-excursion activate)
   "Prevent [TAB] from moving point to the beginning of the line.
 
