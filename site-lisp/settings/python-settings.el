@@ -31,6 +31,32 @@ other modes."
             (delete-forward-char (- (current-indentation) indentation-before)))))
     ad-do-it))
 
+;; This completely overrides the existing function
+(defadvice py-newline-and-indent (around fix activate)
+  "Add a newline and indent to outmost reasonable indent.
+When indent is set back manually, this is honoured in following lines.
+
+This modified version always ends with point at end of
+indentation, and never indents an existing line further than the
+current indentation."
+  (interactive "*")
+  (let ((ci (current-indentation))
+        erg)
+    (if (< ci (current-column))         ; if point beyond indentation
+        (progn
+          (newline)
+          (setq erg (indent-to-column (py-compute-indentation))))
+      (beginning-of-line)
+      (insert-char ?\n 1)
+      ;; Never indent an existing line further than it already is.
+      (setq erg (move-to-column (apply #'min
+                                       (py-compute-indentation)
+                                       (when (not (looking-at-p "[ \t]+$"))
+                                         (list (current-indentation)))))))
+    (indent-line-to erg)
+    (when (interactive-p) (message "%s" erg))
+    erg))
+
 ;; Allow autopair to support python's triple quotes
 (eval-after-load "autopair"
   '(progn
