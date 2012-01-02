@@ -1,4 +1,5 @@
 (require 'magit)
+(require 'tempbuf)
 (global-set-key (kbd "C-c C-m") 'magit-status)
 (global-set-key (kbd "C-c g") 'magit-status)
 
@@ -84,3 +85,10 @@
             (revert-buffer t t nil)
 	  (error (let ((signal-data (cadr var)))
 		   (cond (t (magit-bug-report signal-data))))))))))
+
+(defadvice magit-run* (after enable-tempbuf activate)
+  "Enable `tempbuf-mode' in `magit-process-buffer-name'"
+  (let ((buf (get-buffer magit-process-buffer-name)))
+    (when buf
+      (with-current-buffer buf
+        (tempbuf-mode 1)))))
