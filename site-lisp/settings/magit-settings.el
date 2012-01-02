@@ -84,8 +84,3 @@
             (revert-buffer t t nil)
 	  (error (let ((signal-data (cadr var)))
 		   (cond (t (magit-bug-report signal-data))))))))))
-
-;; Ignore TRAMP errors
-(defadvice magithub-try-enabling-minor-mode (around ignore-errors activate)
-  (ignore-errors
-    ad-do-it))
