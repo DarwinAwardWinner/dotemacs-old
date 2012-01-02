@@ -92,3 +92,13 @@
     (when buf
       (with-current-buffer buf
         (tempbuf-mode 1)))))
+
+(defmacro magit-define-command (name command &optional force)
+  """Define a function called `magit-NAME' that calls (magit-git-command COMMAND)."
+  (let ((magit-command-name (intern (concat "magit-" (symbol-name name)))))
+    (if (and (not force) (fboundp magit-command-name))
+        (error "Function %s is already defined." magit-command-name)
+      `(defun ,magit-command-name ()
+         ,(format "Run \"git %s\"" (eval command))
+         (interactive)
+         (magit-git-command ,(eval command))))))
