@@ -102,3 +102,5 @@
          ,(format "Run \"git %s\"" (eval command))
          (interactive)
          (magit-git-command ,(eval command))))))
+
+(magit-define-command wip-clean "wip-clean")
