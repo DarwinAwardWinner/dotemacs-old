@@ -29,3 +29,12 @@
     (when line-starts-blank
       (let ((tab-always-indent t))
         (indent-for-tab-command)))))
+
+;; Fix these bits of advice to never throw errors
+(defadvice cua--pre-command-handler-1 (around autopair-override activate)
+  "Don't actually do anything if autopair is about to autowrap. "
+  (unless (ignore-errors (autopair-should-autowrap)) ad-do-it))
+
+(defadvice delete-selection-pre-hook (around autopair-override activate)
+  "Don't actually do anything if autopair is about to autowrap. "
+  (unless (ignore-errors (autopair-should-autowrap)) ad-do-it))
