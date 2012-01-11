@@ -141,6 +141,7 @@
  '(dta-cfg-dir "/home/ryan/.emacs.d/persistence/desktopaid/")
  '(dta-default-cfg "default.conf")
  '(dta-max-history-length 100)
+ '(el-get-notify-type (quote both))
  '(eldoc-idle-delay 0.25)
  '(elscreen-buffer-list-enabled t)
  '(elscreen-tab-display-kill-screen (quote right))
