@@ -152,6 +152,10 @@
                     :url ,url))
           el-get-sources-from-http)
 
+  ;; For testing purposes
+  '((:name fake-test-pkg
+           :type builtin))
+
   ;; This one is special because the name can't be auto-determined.
   '((:name ido-other-window
            :type git
