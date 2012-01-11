@@ -56,6 +56,7 @@ In particular, no temp files are created."
   "Returns non-nil if file name is excluded from trash."
   (let ((basename (file-name-nondirectory path)))
     (or
+     (file-remote-p path)
      (some (apply-partially 'string= basename)
            system-trash-exclude-names)
      (some (apply-partially 'string-begins-with-p path)
