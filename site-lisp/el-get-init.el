@@ -185,7 +185,6 @@
               tooltip-help
               smart-dash
               smart-mark
-
               sackspace
               query
               pointback
