@@ -77,6 +77,12 @@ In particular, no temp files are created."
               path))
            system-trash-exclude-path-matches))))
 
+(defun delete-file-or-directory-internal (filename)
+  (if (and (file-directory-p filename)
+           (not (file-symlink-p filename)))
+      (delete-directory filename t nil)
+    (delete-file filename nil)))
+
 (defun trash-or-rm (filename)
   "Attempt to move a file to the trash. If this fails, simply delete it.
 This guarantees that any deletable file will either be trashed or deleted.
@@ -85,7 +91,7 @@ If the file is excluded from the trash, it is simply deleted."
     (ignore-errors
       (call-process-discard-output "gvfs-trash" filename)))
   (when (file-exists-p filename)
-    (call-process-discard-output "rm" "-rf" filename)))
+    (delete-file-or-directory-internal filename)))
 
 (setq trash-directory nil)
 (defalias 'system-move-file-to-trash 'trash-or-rm)
