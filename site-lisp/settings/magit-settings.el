@@ -26,7 +26,8 @@
         'magit-log-head-label-wip))
 
 (add-to-list 'magit-refs-namespaces
-             '("wip" magit-log-get-wip-color))
+             '("wip" magit-log-get-wip-color)
+             'append)
 
 ;; Ignore TRAMP errors
 (defun magit-revert-buffers (dir &optional ignore-modtime)
