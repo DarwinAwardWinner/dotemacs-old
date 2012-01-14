@@ -219,6 +219,7 @@
  '(magit-repo-dirs (quote ("~/Projects/public" "~/Projects/private")))
  '(magit-save-some-buffers nil)
  '(magit-set-upstream-on-push t)
+ '(magit-wip-mode t nil (magit-wip))
  '(mail-host-address "aeolus")
  '(markdown-command "Markdown.pl")
  '(marmalade-server "http://marmalade-repo.org")

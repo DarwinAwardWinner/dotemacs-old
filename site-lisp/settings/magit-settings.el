@@ -1,4 +1,5 @@
 (require 'magit)
+(require 'magit-wip)
 (require 'tempbuf)
 (global-set-key (kbd "C-c C-m") 'magit-status)
 (global-set-key (kbd "C-c g") 'magit-status)
@@ -8,26 +9,6 @@
   (when (equal (ad-get-arg 0) (list "git" "init"))
     (ad-set-arg 0 (list "git" "myinit")))
   ad-do-it)
-
-(defface magit-log-head-label-wip
-  '((((class color) (background light))
-     :box t
-     :background "Grey95"
-     :foreground "LightSkyBlue3")
-    (((class color) (background dark))
-     :box t
-     :background "Grey07"
-     :foreground "LightSkyBlue4"))
-  "Face for git-wip labels shown in log buffer."
-  :group 'magit-faces)
-
-(defun magit-log-get-wip-color (suffix)
-  (list (concat "(WIP) " suffix)
-        'magit-log-head-label-wip))
-
-(add-to-list 'magit-refs-namespaces
-             '("wip" magit-log-get-wip-color)
-             'append)
 
 ;; Ignore TRAMP errors
 (defun magit-revert-buffers (dir &optional ignore-modtime)
