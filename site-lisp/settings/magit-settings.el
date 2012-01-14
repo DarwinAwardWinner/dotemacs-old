@@ -19,55 +19,14 @@
      :background "Grey07"
      :foreground "LightSkyBlue4"))
   "Face for local branch head labels shown in log buffer."
-  :group 'magit)
+  :group 'magit-faces)
 
-(setq magit-present-log-line-function 'magit-present-log-line-custom)
-(defun magit-present-log-line-custom (graph sha1 refs message)
-  "My custom log line generator with support for git-wip."
-  (let* ((ref-re "\\(?:tag: \\)?refs/\\(bisect\\|tags\\|remotes\\|patches/[^/]*\\|heads\\|wip\\)/\\(.+\\)")
-	 (string-refs
-	  (when refs
-            (message "REFS: %S" refs)
-	    (concat (mapconcat
-		     (lambda (r)
-		       (propertize
-			(if (string-match ref-re r)
-                            (concat
-                             (when (member* (match-string 1 r) '("wip")
-                                            :test 'string=)
-                               (concat (match-string 1 r) "/"))
-                             (match-string 2 r))
-			  r)
-			'face (cond
-			       ((string= r "refs/stash")
-				'magit-log-head-label-local)
-			       ((string= (match-string 1 r) "remotes")
-				'magit-log-head-label-remote)
-			       ((magit-string-match-p "^patches/[^/]*$" (or (match-string 1 r) "")) ; Stacked Git
-				'magit-log-head-label-patches)
-			       ((string= (match-string 1 r) "bisect")
-				(if (string= (match-string 2 r) "bad")
-				    'magit-log-head-label-bisect-bad
-				  'magit-log-head-label-bisect-good))
-			       ((string= (match-string 1 r) "tags")
-				'magit-log-head-label-tags)
-			       ((string= (match-string 1 r) "heads")
-				'magit-log-head-label-local)
-                               ((string= (match-string 1 r) "wip")
-                                'magit-log-head-label-wip))))
-		     refs
-		     " ")
-		    " "))))
-    (concat
-     (if sha1
-	 (propertize (substring sha1 0 8) 'face 'magit-log-sha1)
-       (insert-char ? 8))
-     " "
-     (when graph
-       (propertize graph 'face 'magit-log-graph))
-     string-refs
-     (when message
-       (propertize message 'face 'magit-log-message)))))
+(defun magit-log-get-wip-color (suffix)
+  (list (concat "(WIP) " suffix)
+        'magit-log-head-label-wip))
+
+(add-to-list 'magit-refs-namespaces
+             '("wip" magit-log-get-wip-color))
 
 ;; Ignore TRAMP errors
 (defun magit-revert-buffers (dir &optional ignore-modtime)
