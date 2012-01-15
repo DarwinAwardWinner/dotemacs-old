@@ -53,7 +53,13 @@
     ;; emms
     full-ack
     highlight-parentheses
-    magit
+    (:name magit
+           :type git
+           :url "https://github.com/DarwinAwardWinner/magit.git"
+           :branch "magit-wip"
+           ;; :info "."
+           :build ("make all")
+           :build/darwin `(,(concat "PATH=" invocation-directory ":$PATH make all")))
     magithub
     nav
     notify
