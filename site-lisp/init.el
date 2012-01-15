@@ -145,3 +145,5 @@ new directories are prepended to emacs's initial Info path."
   (ignore-errors (load-file file)))
 
 (provide 'init)
+
+(switch-to-buffer "*scratch*")
