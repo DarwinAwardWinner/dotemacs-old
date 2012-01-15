@@ -215,6 +215,7 @@
  '(longlines-auto-wrap nil)
  '(longlines-wrap-follows-window-size t)
  '(magit-completing-read-function (quote magit-ido-completing-read))
+ '(magit-create-branch-behaviour (quote at-point))
  '(magit-log-auto-more t)
  '(magit-repo-dirs (quote ("~/Projects/public" "~/Projects/private")))
  '(magit-save-some-buffers nil)
