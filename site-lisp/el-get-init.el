@@ -142,7 +142,11 @@
            :url ,el-get-git-install-url
            :features el-get
            :load    "el-get.el"
-           :compile "el-get.el"))
+           :compile "el-get.el")
+    (:name zeitgeist
+           :type http
+           :url "http://bazaar.launchpad.net/~zeitgeist-dataproviders/zeitgeist-datasources/trunk/download/head:/zeitgeist.el-20100805191722-cqiaypshgst5y0we-3/zeitgeist.el"
+           :features zeitgeist))
 
   el-get-sources-from-recipes
 
