@@ -36,12 +36,12 @@
 
 This makes Python's indentation behavior consistent with all
 other modes."
-  (if (<= (point) (+ (point-at-bol) (current-indentation)))
+  (if (<= (current-column) (current-indentation))
       (progn
-        (goto-char (+ (point-at-bol) (current-indentation)))
+        (move-to-column (current-indentation))
         ad-do-it)
     (save-excursion
-      (goto-char (+ (point-at-bol) (current-indentation)))
+      (move-to-column (current-indentation))
       ad-do-it)))
 
 (defcustom py-electric-colon-dedent-only nil
