@@ -3,8 +3,8 @@
                   (expand-file-name "el-get" init-path))
       el-get-install-dir (concat el-get-dir "el-get")
       ;; Install el-get from *my* repo if it's not already installed.
-      el-get-git-install-url "https://github.com/DarwinAwardWinner/el-get.git"
       el-get-git-url "https://github.com/DarwinAwardWinner/el-get.git"
+      el-get-git-install-url el-get-git-url
       ;; Use the master branch of el-get
       el-get-master-branch t)
 
@@ -13,7 +13,7 @@
   (add-to-list 'load-path el-get-install-dir))
 (unless (require 'el-get nil 'noerror)
   (url-retrieve
-   "https://github.com/DarwinAwardWinner/el-get/raw/custom-installer/el-get-install.el"
+   "https://github.com/DarwinAwardWinner/el-get/raw/master/el-get-install.el"
    (lambda (s)
      (end-of-buffer)
      (eval-print-last-sexp))))
@@ -130,12 +130,12 @@
 (setq
  el-get-sources
  (append
-  ;; Don't compile el-get, because I've been modifying it so often.
+  ;; My own el-get
   `((:name el-get
            :website "https://github.com/dimitri/el-get#readme"
            :description "Manage the external elisp bits and pieces you depend upon."
            :type git
-           :branch "reload"
+           :branch "master"
            :url ,el-get-git-install-url
            :features el-get
            :load    "el-get.el"
