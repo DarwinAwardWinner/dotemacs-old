@@ -57,7 +57,11 @@
     ;; (:name magit
     ;;        :url "https://github.com/DarwinAwardWinner/magit.git"
     ;;        :branch "magit-wip")
-    magithub
+    ;; magithub
+    (:name magithub
+           :username "DarwinAwardWinner"
+           :url "https://github.com/DarwinAwardWinner/magithub.git"
+           :branch "improvements")
     nav
     notify
     nxhtml
