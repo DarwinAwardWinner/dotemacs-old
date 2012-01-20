@@ -2,7 +2,7 @@
 (defun fd-add-file-to-recent ()
   (when buffer-file-name
     (ignore-errors
-      (start-process "/home/ryan/bin/gnome-addtorecent" nil "addtorecent"
+      (start-process "/home/ryan/bin/gnome-addtorecent" nil "gnome-addtorecent"
                      (concat "file://" buffer-file-name)
                      "text/plain"
                      "Emacs"
