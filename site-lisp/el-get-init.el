@@ -83,6 +83,7 @@
     pylookup
     sml-modeline
     remember
+    revive-plus
     switch-window
     ))
 
@@ -212,6 +213,7 @@
          ))
     ))
  )
+
 (loop for source in el-get-sources
       do (ignore-errors (el-get 'sync (list (el-get-source-name source)))))
 
