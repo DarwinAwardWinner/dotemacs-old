@@ -40,7 +40,7 @@
       url)))
 
 ;; Packages to install from existing recipes
-(defvar el-get-sources-from-recipes
+(setq el-get-sources-from-recipes
   '(anything
     apel
     auto-complete
@@ -53,15 +53,18 @@
     ;; emms
     full-ack
     highlight-parentheses
+
     magit
     ;; (:name magit
     ;;        :url "https://github.com/DarwinAwardWinner/magit.git"
     ;;        :branch "magit-wip")
+
     ;; magithub
     (:name magithub
            :username "DarwinAwardWinner"
            :url "https://github.com/DarwinAwardWinner/magithub.git"
            :branch "improvements")
+
     nav
     notify
     nxhtml
@@ -84,7 +87,7 @@
     ))
 
 ;; Packages to install via elpa
-(defvar el-get-sources-from-elpa
+(setq el-get-sources-from-elpa
   '(
     ac-R
     c-eldoc
@@ -108,7 +111,7 @@
     ))
 
 ;; Packages to install from emacswiki
-(defvar el-get-sources-from-emacswiki
+(setq el-get-sources-from-emacswiki
   '(
     centered-cursor-mode
     csharp-mode
@@ -123,7 +126,7 @@
     ))
 
 ;; URL's of packages to install via http
-(defvar el-get-sources-from-http
+(setq el-get-sources-from-http
   '(
     "http://download.tuxfamily.org/user42/quick-yes.el"
     ;; "http://repo.or.cz/w/emacs.git/blob_plain/HEAD:/lisp/ido.el"
