@@ -85,6 +85,7 @@
     remember
     revive-plus
     switch-window
+    js2-mode
     ))
 
 ;; Packages to install via elpa
