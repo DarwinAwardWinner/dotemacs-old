@@ -63,7 +63,7 @@
     (:name magithub
            :username "DarwinAwardWinner"
            :url "https://github.com/DarwinAwardWinner/magithub.git"
-           :branch "improvements")
+           :branch "what-im-running")
 
     nav
     notify
