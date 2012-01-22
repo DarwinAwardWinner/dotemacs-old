@@ -39,181 +39,179 @@
         (match-string 1 basename)
       url)))
 
-;; Packages to install from existing recipes
-(setq el-get-sources-from-recipes
-  '(anything
-    apel
-    auto-complete
-    auto-install
-    autopair
-    bbdb
-    browse-kill-ring
-    clojure-mode
-    dired+
-    ;; emms
-    full-ack
-    highlight-parentheses
+(progn
+  ;; Packages to install from existing recipes
+  (setq el-get-sources-from-recipes
+        '(anything
+          apel
+          auto-complete
+          auto-install
+          autopair
+          bbdb
+          browse-kill-ring
+          clojure-mode
+          dired+
+          emms
+          highlight-parentheses
+          (:name magit
+                 :url "https://github.com/DarwinAwardWinner/magit.git"
+                 :branch "what-im-running")
+          (:name magithub
+                 :username "DarwinAwardWinner"
+                 :url "https://github.com/DarwinAwardWinner/magithub.git"
+                 :branch "improvements")
+          nav
+          notify
+          nxhtml
+          org-mode
+          package
+          paredit
+          (:name smex
+                 :url "https://github.com/DarwinAwardWinner/smex.git"
+                 :branch "master")
+          undo-tree
+          (:name mode-compile
+                 :before (lambda ()
+                           (when (fboundp 'define-obsolete-variable-alias)
+                             (provide 'obsolete))))
+          pymacs
+          python-mode
+          ipython
+          pylookup
+          sml-modeline
+          remember
+          revive-plus
+          switch-window
+          js2-mode
+          ))
 
-    magit
-    ;; (:name magit
-    ;;        :url "https://github.com/DarwinAwardWinner/magit.git"
-    ;;        :branch "magit-wip")
+  ;; Packages to install via elpa
+  (setq el-get-sources-from-elpa
+        '(
+          ac-R
+          c-eldoc
+          compilation-recenter-end
+          diminish
+          dired-isearch
+          iresize
+          kill-ring-search
+          parenface
+          rainbow-mode
+          rainbow-delimiters
+          marmalade
+          furl
+          smart-operator
+          wtf
+          yaml-mode
+          ido-yes-or-no
+          icomplete+
+          multi-term
+          yaoddmuse
+          ))
 
-    ;; magithub
-    (:name magithub
-           :username "DarwinAwardWinner"
-           :url "https://github.com/DarwinAwardWinner/magithub.git"
-           :branch "what-im-running")
+  ;; Packages to install from emacswiki
+  (setq el-get-sources-from-emacswiki
+        '(
+          centered-cursor-mode
+          csharp-mode
+          cursor-chg
+          highlight-cl
+          iedit
+          mic-paren
+          misc-cmds
+          smart-compile+
+          tempbuf
+          winpoint
+          ))
 
-    nav
-    notify
-    nxhtml
-    org-mode
-    package
-    paredit
-    smex
-    undo-tree
-    (:name mode-compile
-           :before (lambda ()
-                     (when (fboundp 'define-obsolete-variable-alias)
-                       (provide 'obsolete))))
-    pymacs
-    python-mode
-    ipython
-    pylookup
-    sml-modeline
-    remember
-    revive-plus
-    switch-window
-    js2-mode
-    ))
+  ;; URL's of packages to install via http
+  (setq el-get-sources-from-http
+        '(
+          "http://download.tuxfamily.org/user42/quick-yes.el"
+          ;; "http://repo.or.cz/w/emacs.git/blob_plain/HEAD:/lisp/ido.el"
+          "http://homepage1.nifty.com/bmonkey/emacs/elisp/tmenu.el"
+          ))
 
-;; Packages to install via elpa
-(setq el-get-sources-from-elpa
-  '(
-    ac-R
-    c-eldoc
-    compilation-recenter-end
-    diminish
-    dired-isearch
-    iresize
-    kill-ring-search
-    parenface
-    rainbow-mode
-    rainbow-delimiters
-    marmalade
-    furl
-    smart-operator
-    wtf
-    yaml-mode
-    ido-yes-or-no
-    icomplete+
-    multi-term
-    yaoddmuse
-    ))
+  ;; Look in ~/.emacs.d/el-get/el-get/recipes/ for known recipes
+  (setq
+   el-get-sources
+   (append
+    ;; My own el-get
+    `((:name el-get
+             :website "https://github.com/dimitri/el-get#readme"
+             :description "Manage the external elisp bits and pieces you depend upon."
+             :type git
+             :branch "master"
+             :url ,el-get-git-install-url
+             :features el-get
+             :load    "el-get.el"
+             :compile "el-get.el")
+      (:name zeitgeist
+             :type http
+             :url "http://bazaar.launchpad.net/~zeitgeist-dataproviders/zeitgeist-datasources/trunk/download/head:/zeitgeist.el-20100805191722-cqiaypshgst5y0we-3/zeitgeist.el"
+             :features zeitgeist))
 
-;; Packages to install from emacswiki
-(setq el-get-sources-from-emacswiki
-  '(
-    centered-cursor-mode
-    csharp-mode
-    cursor-chg
-    highlight-cl
-    iedit
-    mic-paren
-    misc-cmds
-    smart-compile+
-    tempbuf
-    winpoint
-    ))
+    el-get-sources-from-recipes
 
-;; URL's of packages to install via http
-(setq el-get-sources-from-http
-  '(
-    "http://download.tuxfamily.org/user42/quick-yes.el"
-    ;; "http://repo.or.cz/w/emacs.git/blob_plain/HEAD:/lisp/ido.el"
-    "http://homepage1.nifty.com/bmonkey/emacs/elisp/tmenu.el"
-    ))
+    (mapcar (lambda (pkg) `(:name ,pkg :type elpa))
+            el-get-sources-from-elpa)
 
-;; Look in ~/.emacs.d/el-get/el-get/recipes/ for known recipes
-(setq
- el-get-sources
- (append
-  ;; My own el-get
-  `((:name el-get
-           :website "https://github.com/dimitri/el-get#readme"
-           :description "Manage the external elisp bits and pieces you depend upon."
-           :type git
-           :branch "master"
-           :url ,el-get-git-install-url
-           :features el-get
-           :load    "el-get.el"
-           :compile "el-get.el")
-    (:name zeitgeist
-           :type http
-           :url "http://bazaar.launchpad.net/~zeitgeist-dataproviders/zeitgeist-datasources/trunk/download/head:/zeitgeist.el-20100805191722-cqiaypshgst5y0we-3/zeitgeist.el"
-           :features zeitgeist))
+    (mapcar (lambda (pkg) `(:name ,pkg :type emacswiki))
+            el-get-sources-from-emacswiki)
 
-  el-get-sources-from-recipes
+    (mapcar (lambda (url)
+              `(:name ,(el-get-package-name-from-url url)
+                      :type http
+                      :url ,url))
+            el-get-sources-from-http)
 
-  (mapcar (lambda (pkg) `(:name ,pkg :type elpa))
-          el-get-sources-from-elpa)
+    ;; For testing purposes
+    '((:name fake-test-pkg
+             :type builtin))
 
-  (mapcar (lambda (pkg) `(:name ,pkg :type emacswiki))
-          el-get-sources-from-emacswiki)
+    ;; This one is special because the name can't be auto-determined.
+    '((:name ido-other-window
+             :type git
+             :url "git@gist.github.com:817266.git"))
+    ;; Special because I need a specific branch
+    '((:name ido-ubiquitous
+             :type git
+             :url "https://github.com/DarwinAwardWinner/ido-ubiquitous.git"
+             :branch "master"))
+    `(
+      ,@(mapcar
+         (lambda (url)
+           `(:name ,(el-get-package-name-from-git url)
+                   :type git
+                   :url ,url))
+         `(;; URL's of packages to install via git
+           "git://git.naquadah.org/google-maps.git"
+           "git://jblevins.org/git/markdown-mode.git"
+           "https://github.com/k-talo/volatile-highlights.el.git"
+           "https://github.com/jwiegley/regex-tool.git"
+           "https://github.com/jrockway/cperl-mode.git"
+           "https://github.com/juster/Sepia.git"
+           "https://github.com/jhelwig/ack-and-a-half.git"
 
-  (mapcar (lambda (url)
-            `(:name ,(el-get-package-name-from-url url)
-                    :type http
-                    :url ,url))
-          el-get-sources-from-http)
-
-  ;; For testing purposes
-  '((:name fake-test-pkg
-           :type builtin))
-
-  ;; This one is special because the name can't be auto-determined.
-  '((:name ido-other-window
-           :type git
-           :url "git@gist.github.com:817266.git"))
-  ;; Special because I need a specific branch
-  '((:name ido-ubiquitous
-           :type git
-           :url "https://github.com/DarwinAwardWinner/ido-ubiquitous.git"
-           :branch "master"))
-  `(
-    ,@(mapcar
-       (lambda (url)
-         `(:name ,(el-get-package-name-from-git url)
-                 :type git
-                 :url ,url))
-       `(;; URL's of packages to install via git
-         "git://git.naquadah.org/google-maps.git"
-         "git://jblevins.org/git/markdown-mode.git"
-         "https://github.com/k-talo/volatile-highlights.el.git"
-         "https://github.com/jwiegley/regex-tool.git"
-         "https://github.com/jrockway/cperl-mode.git"
-         "https://github.com/juster/Sepia.git"
-
-         ,@(mapcar
-            (lambda (name)
-              (format "https://github.com/emacsmirror/%s.git" name))
-            '(;; URL's of packages on emacsmirror
-              read-library
-              offlineimap
-              keydef
-              tooltip-help
-              smart-dash
-              smart-mark
-              sackspace
-              query
-              pointback
-              multi-eshell
-              eval-sexp-in-comments
-              ))
-         ))
-    ))
- )
+           ,@(mapcar
+              (lambda (name)
+                (format "https://github.com/emacsmirror/%s.git" name))
+              '(;; URL's of packages on emacsmirror
+                read-library
+                offlineimap
+                keydef
+                tooltip-help
+                smart-dash
+                smart-mark
+                sackspace
+                query
+                pointback
+                multi-eshell
+                eval-sexp-in-comments
+                ))
+           ))
+      ))
+   ))
 
 (loop for source in el-get-sources
       do (ignore-errors (el-get 'wait (list (el-get-source-name source)))))
