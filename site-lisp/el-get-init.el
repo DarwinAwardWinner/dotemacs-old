@@ -192,7 +192,7 @@
            "https://github.com/jrockway/cperl-mode.git"
            "https://github.com/juster/Sepia.git"
            "https://github.com/jhelwig/ack-and-a-half.git"
-
+           "https://github.com/DarwinAwardWinner/git-commit-mode"
            ,@(mapcar
               (lambda (name)
                 (format "https://github.com/emacsmirror/%s.git" name))
