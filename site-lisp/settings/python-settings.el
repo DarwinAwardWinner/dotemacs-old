@@ -103,35 +103,35 @@ current indentation."
                (lambda ()
                  (add-to-list 'ac-sources 'ac-source-ropemacs)))))
 
-;; Pylookup
+;; ;; Pylookup
 
-;; load pylookup when compile time
-(require 'pylookup)
-;; (eval-when-compile (require 'pylookup))
-(setq pylookup-dir (file-name-directory (find-library-name "pylookup")))
+;; ;; load pylookup when compile time
+;; (require 'pylookup)
+;; ;; (eval-when-compile (require 'pylookup))
+;; (setq pylookup-dir (file-name-directory (find-library-name "pylookup")))
 
-;; set executable file and db file
-(setq pylookup-program (concat pylookup-dir "/pylookup.py"))
-(setq pylookup-db-file (concat pylookup-dir "/pylookup.db"))
+;; ;; set executable file and db file
+;; (setq pylookup-program (concat pylookup-dir "/pylookup.py"))
+;; (setq pylookup-db-file (concat pylookup-dir "/pylookup.db"))
 
-;; to speedup, just load it on demand
-;; (autoload 'pylookup-lookup "pylookup"
-;;   "Lookup SEARCH-TERM in the Python HTML indexes." t)
-;; (autoload 'pylookup-update "pylookup"
-;;   "Run pylookup-update and create the database at `pylookup-db-file'." t)
+;; ;; to speedup, just load it on demand
+;; ;; (autoload 'pylookup-lookup "pylookup"
+;; ;;   "Lookup SEARCH-TERM in the Python HTML indexes." t)
+;; ;; (autoload 'pylookup-update "pylookup"
+;; ;;   "Run pylookup-update and create the database at `pylookup-db-file'." t)
 
-(define-key py-mode-map (kbd "C-c h") 'pylookup-lookup)
+;; (define-key py-mode-map (kbd "C-c h") 'pylookup-lookup)
 
 ;; Flymake
-(eval-after-load "flymake"
-  '(progn
-     (defun flymake-pylint-init ()
-       (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                          'flymake-create-temp-inplace))
-              (local-file (file-relative-name
-                           temp-file
-                           (file-name-directory buffer-file-name))))
-         (list "epylint" (list local-file))))
+;; (eval-after-load "flymake"
+;;   '(progn
+;;      (defun flymake-pylint-init ()
+;;        (let* ((temp-file (flymake-init-create-temp-buffer-copy
+;;                           'flymake-create-temp-inplace))
+;;               (local-file (file-relative-name
+;;                            temp-file
+;;                            (file-name-directory buffer-file-name))))
+;;          (list "epylint" (list local-file))))
 
-     (add-to-list 'flymake-allowed-file-name-masks
-                  '("\\.py\\'" flymake-pylint-init))))
+;;      (add-to-list 'flymake-allowed-file-name-masks
+;;                   '("\\.py\\'" flymake-pylint-init))))
