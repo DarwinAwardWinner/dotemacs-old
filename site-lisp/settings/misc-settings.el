@@ -87,9 +87,16 @@ manpage of a `current-word'."
 
 (defadvice delete-trailing-whitespace (around prevent-at-point activate)
   "Prevent delete-trailing-whitespace from deleting whitespace the the left of point, on the point's line"
-  (insert "x")
-  ad-do-it
-  (delete-backward-char 1))
+  (save-excursion
+    (let ((saved-mark-active mark-active)
+          deactivate-mark
+          delete-selection-mode)
+      (deactivate-mark)
+      (insert "x")
+      ad-do-it
+      (delete-backward-char 1)
+      (when saved-mark-active
+        (activate-mark)))))
 
 (defun split-window-into-new-frame (&optional win frm)
   "Split the current (or specified) window into a separate frame.
