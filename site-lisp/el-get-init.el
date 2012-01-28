@@ -193,6 +193,7 @@
            "https://github.com/juster/Sepia.git"
            "https://github.com/jhelwig/ack-and-a-half.git"
            "https://github.com/DarwinAwardWinner/git-commit-mode"
+           "https://github.com/magnars/expand-region.el.git"
            ,@(mapcar
               (lambda (name)
                 (format "https://github.com/emacsmirror/%s.git" name))
