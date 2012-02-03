@@ -6,7 +6,7 @@
       el-get-git-url "https://github.com/DarwinAwardWinner/el-get.git"
       el-get-git-install-url el-get-git-url
       ;; Use the master branch of el-get
-      el-get-master-branch t)
+      el-get-install-branch "register-method-keywords")
 
 ;; Ensure el-get is installed and set up
 (when (file-directory-p el-get-install-dir)
@@ -141,7 +141,7 @@
              :website "https://github.com/dimitri/el-get#readme"
              :description "Manage the external elisp bits and pieces you depend upon."
              :type git
-             :branch "master"
+             :branch ,el-get-install-branch
              :url ,el-get-git-install-url
              :features el-get
              :load    "el-get.el"
