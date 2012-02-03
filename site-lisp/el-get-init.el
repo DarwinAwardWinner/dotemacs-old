@@ -18,6 +18,8 @@
      (end-of-buffer)
      (eval-print-last-sexp))))
 
+;; Ensure el-get was installed successfully by the above
+(require 'el-get)
 ;; Ensure package.el is installed and set up
 (el-get 'sync 'package)
 
