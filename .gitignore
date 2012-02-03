@@ -1,1 +1,12 @@
-.hgignore
+# -*- mode: conf; -*-
+persistence
+TAGS
+.\#*
+\#*
+tramp
+.git/
+.hg/
+session.*
+url/
+site-lisp/el-get
+emms/
