@@ -178,6 +178,11 @@
              :type git
              :url "https://github.com/DarwinAwardWinner/ido-ubiquitous.git"
              :branch "master"))
+    ;; Special because I need to add specific directories to load path
+    '((:name git-wip
+             :type git
+             :url "https://github.com/DarwinAwardWinner/git-wip"
+             :load-path ("emacs")))
     `(
       ,@(mapcar
          (lambda (url)

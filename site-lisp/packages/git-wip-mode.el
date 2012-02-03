@@ -1,1 +1,0 @@
-/home/ryan/Projects/git-wip/emacs/git-wip-mode.el
