@@ -88,7 +88,6 @@
   ;; Packages to install via elpa
   (setq el-get-sources-from-elpa
         '(
-          ac-R
           c-eldoc
           compilation-recenter-end
           diminish
@@ -130,6 +129,7 @@
           "http://download.tuxfamily.org/user42/quick-yes.el"
           ;; "http://repo.or.cz/w/emacs.git/blob_plain/HEAD:/lisp/ido.el"
           "http://homepage1.nifty.com/bmonkey/emacs/elisp/tmenu.el"
+          "https://github.com/myuhe/auto-complete-acr.el/raw/master/auto-complete-acr.el"
           ))
 
   ;; Look in ~/.emacs.d/el-get/el-get/recipes/ for known recipes
