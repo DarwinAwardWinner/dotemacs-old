@@ -14,7 +14,7 @@
   (ignore-errors ad-do-it))
 
 (setq autopair-autowrap t)              ; Enable autowrapping
-(setq autopair-skip-whitespace t)
+(setq autopair-skip-whitespace 'chomp)
 (autopair-global-mode 1) ;; to enable in all buffers
 
 
