@@ -1,5 +1,11 @@
 (require 'tramp)
 
+;; Turn off auto-save-mode for tramp files
+(defun tramp-turn-off-auto-save ()
+  (when (tramp-file-name-p (buffer-file-name (current-buffer)))
+    (auto-save-mode 0)))
+(add-hook 'find-file-hook 'tramp-turn-off-auto-save)
+
 (defun tramp-dissect-file-name-maybe (name &optional nodefault)
   "Like tramp-dissect-file-name, but returns nil instead of error."
   (when (tramp-tramp-file-p name)
