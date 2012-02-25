@@ -1,5 +1,10 @@
 (require 'python-mode)
 
+
+(eval-after-load "smart-compile+"
+  '(add-to-list 'smart-compile-alist
+                '("\\.py$" . "epylint %f | sort -t: -k2 -g")))
+
 (define-key py-mode-map (kbd "C-c C-m") nil)
 (define-key py-mode-map (kbd "C-<backspace>") nil)
 
