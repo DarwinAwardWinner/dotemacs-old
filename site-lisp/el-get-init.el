@@ -53,6 +53,7 @@
           browse-kill-ring
           clojure-mode
           dired+
+          doc-mode
           emms
           highlight-parentheses
           (:name magit
