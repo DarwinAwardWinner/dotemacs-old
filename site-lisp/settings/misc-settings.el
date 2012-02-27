@@ -201,10 +201,12 @@ all absolute. if DIR is a file, an empty list is returned."
 (defun directory-list-recursive-internal (dir hidden)
   "Don't use this function directly. See `directory-list-recursive'."
   (assert (file-name-absolute-p dir))
-  (let ((subdirs (remove-if-not (lambda (subdir)
-                                  (and (file-directory-p subdir)
-                                       (not (member (file-name-nondirectory subdir) '("." "..")))))
-                                (directory-files dir 'full nil 'nosort))))
+  (let ((subdirs
+         (remove-if-not
+          (lambda (subdir)
+            (and (file-directory-p subdir)
+                 (not (member (file-name-nondirectory subdir) '("." "..")))))
+          (directory-files dir 'full nil 'nosort))))
     (when (not hidden)
       (setq subdirs
             (remove-if (lambda (subdir)
@@ -213,15 +215,27 @@ all absolute. if DIR is a file, an empty list is returned."
     (cons dir (mapcan (lambda (subdir) (directory-list-recursive-internal subdir hidden))
                       subdirs))))
 
-(defun clean-stale-elc-files (dir &optional recursive hidden)
+(defun clean-orphan-elc-files (dir &optional recursive hidden)
   "Delete elc files in DIR that do not have corresponding el files."
   (dolist (dir (if recursive
                    (directory-list-recursive dir hidden)
                  (list dir)))
     (dolist (elc (directory-files dir 'full "\\.elc$" 'nosort))
       (unless (file-exists-p (concat (file-name-sans-extension elc) ".el"))
-        (message "Cleaning stale elc file %s" elc)
+        (message "Cleaning orphan elc file %s" elc)
         (delete-file elc)))))
+
+(defun clean-stale-elc-files (dir &optional recursive hidden)
+  "Delete elc files in DIR that are older than the corresponding el files."
+  (dolist (dir (if recursive
+                   (directory-list-recursive dir hidden)
+                 (list dir)))
+    (dolist (elc (directory-files dir 'full "\\.elc$" 'nosort))
+      (let ((el (concat (file-name-sans-extension elc) ".el")))
+        (when (and (file-exists-p elc)
+                   (file-newer-than-file-p el elc))
+          (message "Cleaning stale elc file %s" elc)
+          (delete-file elc))))))
 
 ;; Scratch buffer sometimes fails to turn on font-lock-mode, so force
 ;; it.
