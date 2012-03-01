@@ -4,5 +4,6 @@
         "Disable ido in ess-find-help-file"
         (let ((ido-everywhere nil)) ad-do-it))))
 
-
-
+(eval-after-load "ess"
+  '(add-hook 'ess-help-mode-hook
+             'turn-on-tempbuf-mode))
