@@ -1,4 +1,4 @@
-(eval-after-load 'executable
+(eval-after-load "executable"
   '(progn
      (defadvice executable-make-buffer-file-executable-if-script-p (around skip-backup-files activate)
        "Don't operate on backup files or auto-save files."

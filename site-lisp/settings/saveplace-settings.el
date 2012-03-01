@@ -2,7 +2,7 @@
 ;;(require 'saveplace)                          ;; get the package
 
 ;; Fix a problem with saveplace.el putting you back in a folded position:
-(eval-after-load 'org
+(eval-after-load "org"
   (add-hook 'org-mode-hook
             (lambda ()
               (when (outline-invisible-p)

@@ -9,7 +9,7 @@
       (ido-complete)
     (insert " ")))
 
-(eval-after-load 'mic-paren
+(eval-after-load "mic-paren"
   '(defadvice mic-paren-highlight (around disable-inside-ido activate)
      "Disable mic-paren highlighting in ido"
      (unless (ido-active)

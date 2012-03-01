@@ -1,4 +1,4 @@
-;; (eval-after-load 'perldoc
+;; (eval-after-load "perldoc"
 ;;   '(progn
 ;;      (defadvice perldoc-sentinel (after finishing-touches activate)
 ;;        "Really go to top of buffer, and mark it read-only."

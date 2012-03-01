@@ -1,4 +1,4 @@
-(eval-after-load 'savehist
+(eval-after-load "savehist"
   '(progn
      ;; Redefined because the original definition didn't allow nil in
      ;; custom

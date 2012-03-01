@@ -1,4 +1,4 @@
-(eval-after-load 'org-faces
+(eval-after-load "org-faces"
   '(defcustom org-todo-keyword-faces nil
      "Faces for specific TODO keywords.
 This is a list of cons cells, with TODO keywords in the car and
@@ -12,7 +12,7 @@ bold :underline t)."
               (string :tag "Keyword")
               (choice color (sexp :tag "Face"))))))
 
-(eval-after-load 'org
+(eval-after-load "org"
   '(progn
      (defun org-get-todo-face-from-color (color)
        "Returns a specification for a face that inherits from org-todo

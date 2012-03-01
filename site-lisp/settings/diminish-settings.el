@@ -57,5 +57,5 @@ the arg must be quoted as a symbol, as in (diminish-undo 'diminished-modes)."
 (defun diminish-init ()
   (diminish-setup 'diminished-minor-modes diminished-minor-modes))
 
-(eval-after-load 'init
+(eval-after-load "init"
   '(diminish-init))

@@ -33,7 +33,7 @@ Also returns nil if pid is nil."
     ad-do-it))
 
 ;; Load the desktop *after* all init stuff is done
-(eval-after-load 'init
+(eval-after-load "init"
   '(progn
      ;; (desktop-read)
      (desktop-save-mode 1)))

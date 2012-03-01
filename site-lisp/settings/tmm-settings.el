@@ -1,4 +1,4 @@
-(eval-after-load 'tmm
+(eval-after-load "tmm"
   '(progn
      (require 'cl)
      ;; Disable ido for tmm-menubar

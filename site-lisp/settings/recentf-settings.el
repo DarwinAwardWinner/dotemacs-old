@@ -6,7 +6,7 @@
 (global-set-key (kbd "<f12>") 'recentf-open-files)
 
 ;; Fix custom Declarations
-(eval-after-load 'recentf
+(eval-after-load "recentf"
   (progn
     (defcustom recentf-max-saved-items 20
       "Maximum number of items of the recent list that will be saved.
