@@ -55,6 +55,7 @@
           dired+
           doc-mode
           emms
+          ess
           highlight-parentheses
           (:name magit
                  :url "https://github.com/DarwinAwardWinner/magit.git"
