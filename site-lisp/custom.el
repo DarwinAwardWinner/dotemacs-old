@@ -221,7 +221,7 @@
  '(magit-create-branch-behaviour (quote at-point))
  '(magit-highlight-indentation nil)
  '(magit-log-auto-more t)
- '(magit-repo-dirs (quote ("~/Projects/public" "~/Projects/private")))
+ '(magit-repo-dirs (quote ("~/Projects/public" "~/Projects/private" "~/.emacs.d")))
  '(magit-save-some-buffers nil)
  '(magit-set-upstream-on-push t)
  '(magit-status-buffer-switch-function (quote switch-to-buffer))
