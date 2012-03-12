@@ -86,6 +86,7 @@
           revive-plus
           switch-window
           js2-mode
+          wanderlust
           ))
 
   ;; Packages to install via elpa
