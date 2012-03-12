@@ -5,8 +5,8 @@
   '(add-to-list 'smart-compile-alist
                 '("\\.py$" . "epylint %f | sort -t: -k2 -g")))
 
-(define-key py-mode-map (kbd "C-c C-m") nil)
-(define-key py-mode-map (kbd "C-<backspace>") nil)
+(define-key python-mode-map (kbd "C-c C-m") nil)
+(define-key python-mode-map (kbd "C-<backspace>") nil)
 
 (defun py-comment-insert-comment-function ()
   """If point matches indentation of next line, don't change it."
