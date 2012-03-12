@@ -55,6 +55,7 @@
           dired+
           doc-mode
           emms
+          ess
           highlight-parentheses
           (:name magit
                  :url "https://github.com/DarwinAwardWinner/magit.git"
@@ -176,7 +177,7 @@
     ;; This one is special because the name can't be auto-determined.
     '((:name ido-other-window
              :type git
-             :url "git@gist.github.com:817266.git"))
+             :url "git://gist.github.com/817266.git"))
     ;; Special because I need a specific branch
     '((:name ido-ubiquitous
              :type git

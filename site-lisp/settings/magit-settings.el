@@ -1,13 +1,21 @@
 (require 'magit)
 (require 'magit-wip)
 (require 'tempbuf)
+(require 'cl)
 (global-set-key (kbd "C-c C-m") 'magit-status)
 (global-set-key (kbd "C-c g") 'magit-status)
 
 (defadvice magit-run* (around use-myinit activate)
   "use git-myinit instead of git-init"
-  (when (equal (ad-get-arg 0) (list "git" "init"))
-    (ad-set-arg 0 (list "git" "myinit")))
+  (let* ((args (ad-get-arg 0))
+         (first-two-args (when (>= (length args) 2)
+                           (list (first args)
+                                 (second args))))
+         (remaining-args (when (>= (length args) 2)
+                           (cddr args))))
+    (when (equal first-two-args '("git" "init"))
+      (ad-set-arg 0 (append '("git" "myinit") remaining-args))
+      (message "Modified command: %S" (ad-get-arg 0))))
   ad-do-it)
 
 ;; Ignore TRAMP errors
