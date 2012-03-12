@@ -72,6 +72,7 @@
  '(browse-url-firefox-new-window-is-tab t)
  '(browse-url-firefox-program "firefox")
  '(browse-url-generic-program "xdg-open")
+ '(c-basic-offset 4)
  '(c-default-style (quote ((java-mode . "java") (awk-mode . "awk") (other . "bsd"))))
  '(clean-buffer-list-delay-general 1)
  '(color-theme-is-cumulative nil)
