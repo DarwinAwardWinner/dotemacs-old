@@ -47,8 +47,6 @@
  '(ac-comphist-file "/home/ryan/.emacs.d/persistence/ac-comphist.dat")
  '(ac-modes (quote (ess-mode emacs-lisp-mode lisp-interaction-mode c-mode cc-mode c++-mode java-mode malabar-mode clojure-mode scala-mode scheme-mode ocaml-mode tuareg-mode haskell-mode perl-mode cperl-mode sepia-mode python-mode ruby-mode ecmascript-mode javascript-mode js-mode js2-mode php-mode css-mode makefile-mode makefile-gmake-mode sh-mode fortran-mode f90-mode ada-mode xml-mode sgml-mode)))
  '(ack-and-a-half-arguments (quote ("-a")))
- '(ack-and-a-half-ignore-case (quote smart))
- '(ack-and-a-half-prompt-for-directory t)
  '(ack-arguments (quote ("-i")))
  '(ack-command "ack-grep" t)
  '(ack-default-arguments "-i --nocolor")
