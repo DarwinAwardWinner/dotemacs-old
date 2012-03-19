@@ -12,4 +12,5 @@
          (cons "~/Projects"
                (remove-if (apply-partially 'string-match-p
                                            "~/Projects/")
-                          magit-repo-dirs)))))
+                          magit-repo-dirs))
+         clean-buffer-list-delay-general 7)))
