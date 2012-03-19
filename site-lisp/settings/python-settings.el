@@ -64,6 +64,21 @@ other modes."
             (delete-forward-char (- (current-indentation) indentation-before)))))
     ad-do-it))
 
+(defcustom py-electric-comment-dedent-only nil
+  "Only allow py-electric-comment to dedent a line, not indent it further."
+  :type 'boolean)
+
+(defadvice py-electric-comment (around dedent-only activate)
+  "Only allow py-electric-comment to dedent a line, not indent it further."
+  (if py-electric-comment-dedent-only
+      (let ((indentation-before (current-indentation)))
+        ad-do-it
+        (when (> (current-indentation) indentation-before)
+          (save-excursion
+            (beginning-of-line)
+            (delete-forward-char (- (current-indentation) indentation-before)))))
+    ad-do-it))
+
 ;; This completely overrides the existing function
 (defadvice py-newline-and-indent (around fix activate)
   "Add a newline and indent to outmost reasonable indent.
