@@ -8,40 +8,20 @@
       ;; Use the master branch of el-get
       el-get-install-branch "master")
 
-;; Ensure el-get is installed and set up
-(when (file-directory-p el-get-install-dir)
-  (add-to-list 'load-path el-get-install-dir))
-(unless (require 'el-get nil 'noerror)
-  (url-retrieve
-   "https://github.com/DarwinAwardWinner/el-get/raw/master/el-get-install.el"
-   (lambda (s)
-     (end-of-buffer)
-     (eval-print-last-sexp))))
-
-;; Ensure el-get was installed successfully by the above
-(require 'el-get)
-;; Ensure package.el is installed and set up
-(el-get 'sync 'package)
-
-;; (when (not (string-equal (el-get-read-package-status "package") "installed"))
-;;   (let ((current-prefix-arg t))
-;;     (el-get-install "package")))
-;; (el-get-init "package")
-;; (require 'package)
-
-(defun el-get-package-name-from-url (url)
-  (let ((basename (file-name-nondirectory url)))
-    (if (string-match-p "\\.el$" basename)
-        (file-name-sans-extension basename)
-      basename)))
-
-(defun el-get-package-name-from-git (url)
-  (let ((basename (file-name-nondirectory url)))
-    (if (string-match "^\\(.*?\\)\\(\\.el\\)?\\(\\.git\\)?$" basename)
-        (match-string 1 basename)
-      url)))
-
+;; Eval this block to set up `el-get-sources'
 (progn
+  ;; Helper functions
+  (defun el-get-package-name-from-url (url)
+    (let ((basename (file-name-nondirectory url)))
+      (if (string-match-p "\\.el$" basename)
+	  (file-name-sans-extension basename)
+	basename)))
+
+  (defun el-get-package-name-from-git (url)
+    (let ((basename (file-name-nondirectory url)))
+      (if (string-match "^\\(.*?\\)\\(\\.el\\)?\\(\\.git\\)?$" basename)
+	  (match-string 1 basename)
+	url)))
   ;; Packages to install from existing recipes
   (setq el-get-sources-from-recipes
         '(anything
@@ -75,7 +55,7 @@
                  :branch "master")
           undo-tree
           (:name mode-compile
-                 :before (lambda ()
+                 :before (progn
                            (when (fboundp 'define-obsolete-variable-alias)
                              (provide 'obsolete))))
           pymacs
@@ -223,6 +203,27 @@
            ))
       ))
    ))
+
+;; Ensure el-get is installed and set up
+(when (file-directory-p el-get-install-dir)
+  (add-to-list 'load-path el-get-install-dir))
+(unless (require 'el-get nil 'noerror)
+  (url-retrieve
+   "https://github.com/DarwinAwardWinner/el-get/raw/master/el-get-install.el"
+   (lambda (s)
+     (end-of-buffer)
+     (eval-print-last-sexp))))
+
+;; Ensure el-get was installed successfully by the above
+(require 'el-get)
+;; Ensure package.el is installed and set up
+(el-get 'sync 'package)
+
+;; (when (not (string-equal (el-get-read-package-status "package") "installed"))
+;;   (let ((current-prefix-arg t))
+;;     (el-get-install "package")))
+;; (el-get-init "package")
+;; (require 'package)
 
 (loop for source in el-get-sources
       do (ignore-errors (el-get 'sync (list (el-get-source-name source)))))
