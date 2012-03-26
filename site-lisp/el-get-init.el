@@ -65,7 +65,6 @@
           sml-modeline
           remember
           revive-plus
-          switch-window
           js2-mode
           wanderlust
           ))
