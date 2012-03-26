@@ -5,3 +5,8 @@
 (eval-after-load "ess"
   '(add-hook 'ess-help-mode-hook
              'turn-on-tempbuf-mode))
+
+;; Filladapt and ess break each other.
+(eval-after-load "filladapt"
+  '(eval-after-load "ess"
+     '(load "fill")))
