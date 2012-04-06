@@ -8,6 +8,10 @@
 (global-set-key (kbd "C-c j") 'join-line)
 (define-key emacs-lisp-mode-map [(control tab)] 'lisp-complete-symbol)
 
+(global-set-key (kbd "<mouse-7>") 'scroll-left)
+(global-set-key (kbd "<mouse-6>") 'scroll-right)
+
+
 ;; Make scripts executable on save
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
