@@ -7,6 +7,8 @@
              'turn-on-tempbuf-mode))
 
 ;; Filladapt and ess break each other.
+(eval-after-load "ess"
+  '(load "fill"))
 (eval-after-load "filladapt"
-  '(eval-after-load "ess"
-     '(load "fill")))
+  '(when (featurep 'ess)
+     (load "fill")))
