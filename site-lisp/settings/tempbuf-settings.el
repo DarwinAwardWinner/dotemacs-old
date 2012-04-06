@@ -36,3 +36,5 @@ if they are inactive for a short while."
   :type '(repeat (symbol :tag "Mode")))
 
 (add-hook 'after-change-major-mode-hook 'tempbuf-major-mode-hook)
+
+(add-hook 'ess-help-mode-hook 'tempbuf-major-mode-hook)
