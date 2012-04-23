@@ -1,7 +1,8 @@
 # My Emacs config
 
 This is the contents of my `~/.emacs.d`. Note that there is no
-`~/.emacs` file. Everything is inside the `.emacs.d` directory.
+`~/.emacs` file. Everything is inside the `.emacs.d` directory. If you
+want to use it for yourself, see the **Installation** section below.
 
 ## Initialization
 
@@ -31,5 +32,20 @@ packages that I use and customize them to my liking.
 
 Note also that `site-lisp/custom.el` contains all the variables that I
 have set through `M-x customize`. Many of my settings files simply
-load a package directi you to edit the settings for that package via
-the Custom interface.
+load a package and direct you to edit the settings for that package
+via the Custom interface.
+
+## Installation
+
+If you want to use my config as a base for your own, you can start by going to your home directory and running:
+
+    git clone https://github.com/DarwinAwardWinner/dotemacs.git .emacs.d
+    
+If you already have a `.emacs.d` in your home directory, you should rename it before running this command. Also, if you already have a `.emacs` file, you will either need to rename it, or modify it to load `~/.emacs.d/init.el`.
+
+## Contact
+
+If you have any questions about my config or how you can adapt it for
+yourself, you can contact me at rct@thompsonclan.org. You can report
+issues on the
+[Github page](https://github.com/DarwinAwardWinner/dotemacs/issues).
