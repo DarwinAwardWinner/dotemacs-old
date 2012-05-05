@@ -207,11 +207,11 @@
 (when (file-directory-p el-get-install-dir)
   (add-to-list 'load-path el-get-install-dir))
 (unless (require 'el-get nil 'noerror)
-  (url-retrieve
-   "https://github.com/DarwinAwardWinner/el-get/raw/master/el-get-install.el"
-   (lambda (s)
-     (end-of-buffer)
-     (eval-print-last-sexp))))
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://github.com/DarwinAwardWinner/el-get/raw/master/el-get-install.el")
+    (end-of-buffer)
+    (eval-print-last-sexp)))
 
 ;; Ensure el-get was installed successfully by the above
 (require 'el-get)
