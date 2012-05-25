@@ -55,6 +55,10 @@
 ;;; Hopefully you'll never have to look at this file again!
 
 (setq custom-file (expand-file-name "custom.el" init-path))
+
+;;; Fire up el-get first, before loading any other packages.
+(load-file (expand-file-name "el-get-init.el" init-path))
+
 (when (file-readable-p custom-file) (load-file custom-file))
 
 (setq init-packages-path (expand-file-name "packages" init-path)
@@ -136,9 +140,6 @@ new directories are prepended to emacs's initial Info path."
 ;;; So you can tell the difference between GNU Emacs and XEmacs in your
 ;;; settings files
 (setq running-xemacs (string-match "XEmacs" (emacs-version)))
-
-;;; Fire up el-get first, before loading any other packages.
-(load-file (expand-file-name "el-get-init.el" init-path))
 
 ;;; Load ~/elisp/settings/*-settings.el, in sorted order.
 (dolist (file (directory-files init-settings-path t "-settings\\.el$"))
