@@ -378,11 +378,7 @@ vm-bogofilter interfaces VM with the bogofilter spam filter."
                 query
                 pointback
                 multi-eshell
-                eval-sexp-in-comments
-                ))
-           ))
-      ))
-   ))
+                eval-sexp-in-comments))))))))
 
 ;; Ensure el-get is installed and set up
 (when (file-directory-p el-get-install-dir)
