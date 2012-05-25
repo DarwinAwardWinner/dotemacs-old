@@ -6,7 +6,9 @@
       el-get-git-url "https://github.com/DarwinAwardWinner/el-get.git"
       el-get-git-install-url el-get-git-url
       ;; Use the master branch of el-get
-      el-get-install-branch "master")
+      el-get-install-branch "master"
+      el-get-verbose t
+      el-get-default-process-sync t)
 
 ;; Eval this block to set up `el-get-sources'
 (progn
