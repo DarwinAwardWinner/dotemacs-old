@@ -1,7 +1,8 @@
 (require 'ido)
 (load "ido-other-window" 'noerror)
-(when (load "ido-yes-or-no" 'noerror)
-  (ido-yes-or-no-mode 1))
+;; (when (load "ido-yes-or-no" 'noerror)
+;;   (ido-yes-or-no-mode 0))
+(require 'ido-yes-or-no)
 
 (defadvice ido-complete-space (around handle-require-match activate)
   "If require-match is nil, always insert space."
