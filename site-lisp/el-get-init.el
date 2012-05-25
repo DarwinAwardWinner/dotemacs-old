@@ -392,14 +392,20 @@ vm-bogofilter interfaces VM with the bogofilter spam filter."
 
 ;; Ensure el-get was installed successfully by the above
 (require 'el-get)
-;; Ensure package.el is installed and set up
-(el-get 'sync 'package)
 
-;; (when (not (string-equal (el-get-read-package-status "package") "installed"))
-;;   (let ((current-prefix-arg t))
-;;     (el-get-install "package")))
-;; (el-get-init "package")
-;; (require 'package)
+;; Ensure package.el is installed and set up. This handles switching
+;; from Emacs 24 to Emacs 23, where pacakge.el is suddenly not
+;; available and needs to be installed as a real package. A manual
+;; reinstall from Emacs 24 would bring it back to being just a dummy.
+(message "Setting up package.el")
+(ignore-errors (el-get 'sync 'package))
+(unless (require 'package nil 'noerror)
+  (message "Need to reinstall package.el")
+  (let ((el-get-default-process-sync t))
+    (el-get-reinstall 'package)
+    (el-get 'sync 'package)
+    (require 'package)))
+(message "Package.el set up successfully")
 
 (loop for source in el-get-sources
       do (ignore-errors (el-get 'sync (list (el-get-source-name source)))))
