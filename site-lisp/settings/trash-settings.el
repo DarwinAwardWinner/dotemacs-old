@@ -81,8 +81,8 @@ In particular, no temp files are created."
 (defun delete-file-or-directory-internal (filename)
   (if (and (file-directory-p filename)
            (not (file-symlink-p filename)))
-      (delete-directory filename t nil)
-    (delete-file filename nil)))
+      (delete-directory filename t)
+    (delete-file filename)))
 
 (defun trash-or-rm (filename)
   "Attempt to move a file to the trash. If this fails, simply delete it.
