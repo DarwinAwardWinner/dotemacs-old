@@ -10,5 +10,6 @@
 
 (when
     (load
-     (expand-file-name "~/.emacs.d/site-lisp/packages/elpa/package.el"))
+     (expand-file-name "~/.emacs.d/site-lisp/packages/elpa/package.el")
+     'noerror)
   (package-initialize))
