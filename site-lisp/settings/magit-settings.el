@@ -52,4 +52,5 @@
          (interactive)
          (magit-git-command ,(eval command))))))
 
-(magit-define-command wip-clean "wip-clean")
+(unless (functionp 'magit-wip-clean)
+  (magit-define-command wip-clean "wip-clean"))
