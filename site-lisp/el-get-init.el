@@ -98,6 +98,7 @@
           iedit
           mic-paren
           misc-cmds
+          rect-mark
           smart-compile+
           tempbuf
           winpoint
