@@ -45,7 +45,6 @@
                  :url "https://github.com/DarwinAwardWinner/magithub.git"
                  :branch "improvements")
           nav
-          notify
           nxhtml
           org-mode
           package
