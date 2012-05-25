@@ -40,5 +40,6 @@
       (setq network-manager-dbus-registration nil)))
 
   ;; Finally, enable it
-  (network-manager-integration-enable))
+  ;(network-manager-integration-enable)
+  )
 
