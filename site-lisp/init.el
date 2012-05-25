@@ -143,7 +143,9 @@ new directories are prepended to emacs's initial Info path."
 
 ;;; Load ~/elisp/settings/*-settings.el, in sorted order.
 (dolist (file (directory-files init-settings-path t "-settings\\.el$"))
-  (ignore-errors (load-file file)))
+  (condition-case e
+      (load-file file)
+    (error (warn "Error while loading settings file %s: %S" file (cdr e)))))
 
 (provide 'init)
 
