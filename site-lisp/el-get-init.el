@@ -88,7 +88,6 @@
           ido-yes-or-no
           icomplete+
           multi-term
-          yaoddmuse
           ))
 
   ;; Packages to install from emacswiki
@@ -104,6 +103,7 @@
           smart-compile+
           tempbuf
           winpoint
+          yaoddmuse
           ))
 
   ;; URL's of packages to install via http
