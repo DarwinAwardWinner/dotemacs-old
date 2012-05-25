@@ -57,8 +57,8 @@
                  :before (progn
                            (when (fboundp 'define-obsolete-variable-alias)
                              (provide 'obsolete))))
-          pymacs
           python-mode
+          pymacs
           ipython
           pylookup
           sml-modeline
