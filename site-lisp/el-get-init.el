@@ -408,7 +408,10 @@ vm-bogofilter interfaces VM with the bogofilter spam filter."
 (message "Package.el set up successfully")
 
 (loop for source in el-get-sources
-      do (ignore-errors (el-get 'sync (list (el-get-source-name source)))))
+      for pkg = (el-get-source-name source)
+      do (condition-case e
+             (el-get 'sync pkg)
+           (error (warn "Error while installing package %s via el-get: %S" pkg (cdr e)))))
 
 (defun el-get-insert-recipe-name (recipe)
   "Prompt for the name of an existing recipe, then insert that name at point.
