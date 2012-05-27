@@ -249,7 +249,6 @@
              :build
              (let ((makerfiles
                     (split-string (shell-command-to-string "find . -name '*.make'"))))
-               (message "MAKERFILES: %S" makerfiles)
                (mapcar
                 (lambda (makerfile)
                   (let ((maker-dir (file-name-directory makerfile))
