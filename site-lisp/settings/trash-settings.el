@@ -79,10 +79,12 @@ In particular, no temp files are created."
            system-trash-exclude-path-matches))))
 
 (defun delete-file-or-directory-internal (filename)
-  (if (and (file-directory-p filename)
-           (not (file-symlink-p filename)))
-      (delete-directory filename t)
-    (delete-file filename)))
+  "Delete a file or directory, without prompting or using the trash."
+  (let (delete-by-moving-to-trash nil)
+    (if (and (file-directory-p filename)
+             (not (file-symlink-p filename)))
+        (delete-directory filename 'recursive)
+      (delete-file filename))))
 
 (defun trash-or-rm (filename)
   "Attempt to move a file to the trash. If this fails, simply delete it.
