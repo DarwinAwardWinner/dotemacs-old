@@ -25,10 +25,9 @@ Use with caution."
                 (server-force-start)
               (ignore-errors (server-start)))))
 
-
 (defun server-force-kill ()
   "Kill the server without asking."
-  (flet ((yes-or-no-p (&rest stuff) t)) (server-mode -1))
+  (server-start 'leave-dead 'inhibit-prompt)
   (server-force-delete))
 
 (defun true (&rest stuff)
