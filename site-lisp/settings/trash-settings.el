@@ -39,7 +39,9 @@ The matches are applied against the full path."
 
 (defcustom trash-only-inside-home
   nil
-  "If t, only move files to trash that are inside your home directory."
+  "If t, only move files to trash that are inside your home directory.
+
+All others will simply be deleted."
   :type 'boolean
   :group 'trash)
 
@@ -88,11 +90,14 @@ In particular, no temp files are created."
 
 (defun trash-or-rm (filename)
   "Attempt to move a file to the trash. If this fails, simply delete it.
+
 This guarantees that any deletable file will either be trashed or deleted.
 If the file is excluded from the trash, it is simply deleted."
   (unless (file-excluded-from-system-trash-p filename)
     (ignore-errors
       (call-process-discard-output "gvfs-trash" "--force" filename)))
+  ;; If the file is excluded from the trash or the previous command
+  ;; failed to trash it, delete it instead.
   (when (file-exists-p filename)
     (delete-file-or-directory-internal filename)))
 
