@@ -92,7 +92,7 @@ This guarantees that any deletable file will either be trashed or deleted.
 If the file is excluded from the trash, it is simply deleted."
   (unless (file-excluded-from-system-trash-p filename)
     (ignore-errors
-      (call-process-discard-output "gvfs-trash" filename)))
+      (call-process-discard-output "gvfs-trash" "--force" filename)))
   (when (file-exists-p filename)
     (delete-file-or-directory-internal filename)))
 
