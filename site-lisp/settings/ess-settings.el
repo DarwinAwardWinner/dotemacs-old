@@ -10,5 +10,4 @@
 (eval-after-load "ess"
   '(load "fill"))
 (eval-after-load "filladapt"
-  '(when (featurep 'ess)
-     (load "fill")))
+  '(load "fill"))
