@@ -144,3 +144,6 @@ OLD and NEW should be TRAMP server specifications, like \"ssh:HOSTNAME:\"."
                             (elt newvec 1)
                             (elt newvec 2)
                             (elt buffer-tramp-vec 3))))))))))
+
+;; For some reason this keeps getting unset
+(add-to-list 'tramp-gvfs-methods "sftp")
