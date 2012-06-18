@@ -406,6 +406,12 @@ vm-bogofilter interfaces VM with the bogofilter spam filter."
     (require 'package)))
 (message "Package.el set up successfully")
 
+(defadvice el-get-start-process-list (around allow-deep-recursion activate)
+  ;; Add 100 to binding depth limit each time, allowing
+  ;; el-get-start-process-list to recurse arbitrarily deep.
+  (let ((max-specpdl-size (+ max-specpdl-size 100)))
+    ad-do-it))
+
 (loop for source in el-get-sources
       for pkg = (el-get-source-name source)
       do (condition-case e
