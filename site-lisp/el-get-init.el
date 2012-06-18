@@ -247,21 +247,55 @@
              :url "http://alioth.debian.org/snapshots.php?group_id=30060"
              :options ("xzf")
              :build
-             (let ((makerfiles
-                    (split-string (shell-command-to-string "find . -name '*.make'"))))
-               (mapcar
-                (lambda (makerfile)
-                  (let ((maker-dir (file-name-directory makerfile))
-                        (maker-command
-                         (replace-regexp-in-string
-                          "\n" ""
-                          (replace-regexp-in-string
-                           "^emacs" el-get-emacs
-                           (with-temp-buffer
-                             (insert-file-contents makerfile)
-                             (buffer-string))))))
-                    (format "cd %s && %s" maker-dir maker-command)))
-                makerfiles))
+             (let* ((pdir (el-get-package-directory 'emacs-goodies-el))
+                    ;; This will return "PDIR" or
+                    ;; "PDIR/pkg-goodies-el-YYYY-MM-DD" depending on whether
+                    ;; tar-cleanup-extract-hook has run already.
+                    (pkg-goodies-dir
+                     (or (car (directory-files pdir 'full "^pkg-goodies-el-"))
+                         pdir))
+                    (default-directory
+                      (file-name-as-directory
+                       (expand-file-name "emacs-goodies-el"
+                                         pkg-goodies-dir))))
+               ;; the :build elisp form is evaluated to build the
+               ;; command list before
+               ;; el-get-http-tar-cleanup-extract-hook but the
+               ;; commands are run afterward, so the directory
+               ;; structure is different.
+               (el-get-verbose-message "Building commands from %s" default-directory)
+               (el-get-verbose-message "Expecting commands to run in %s" pdir)
+               (append
+                ;; Apply all patches
+                (mapcar
+                 (lambda (patch-file)
+                   (list "patch" "-p1" "-f" "--no-backup-if-mismatch"
+                         ;; Post-cleanup paths
+                         "-i" (expand-file-name patch-file (expand-file-name "emacs-goodies-el/debian/patches" pdir))
+                         "-d" (expand-file-name "emacs-goodies-el" pdir)))
+                 (with-temp-buffer
+                   ;; Pre-cleanup path
+                   (insert-file-contents "debian/patches/series")
+                   (split-string (buffer-string) "\n" t)))
+                ;; Run all "*.make" files
+                (let ((makerfiles
+                       ;; Will return relative file names
+                       (split-string (shell-command-to-string "find . -name '*.make'"))))
+                  (el-get-verbose-message "Makerfiles: %S" makerfiles)
+                  (mapcar
+                   (lambda (makerfile)
+                     ;; `maker-dir' is post-cleanup path
+                     (let* ((maker-dir (expand-file-name (file-name-directory makerfile) (expand-file-name "emacs-goodies-el" pdir)))
+                            (maker-command
+                             (replace-regexp-in-string
+                              "\n" ""
+                              (replace-regexp-in-string
+                               "^emacs" el-get-emacs
+                               (with-temp-buffer
+                                 (insert-file-contents makerfile)
+                                 (buffer-string))))))
+                       (format "cd %s && %s" maker-dir maker-command)))
+                   makerfiles))))
              :load-path ("emacs-goodies-el/elisp/debian-el"
                          "emacs-goodies-el/elisp/devscripts-el"
                          "emacs-goodies-el/elisp/dpkg-dev-el"
