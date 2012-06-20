@@ -38,3 +38,6 @@
 (defadvice delete-selection-pre-hook (around autopair-override activate)
   "Don't actually do anything if autopair is about to autowrap. "
   (unless (ignore-errors (autopair-should-autowrap)) ad-do-it))
+
+(eval-after-load "auto-complete"
+  '(define-key ac-completing-map [return] 'ac-complete))
