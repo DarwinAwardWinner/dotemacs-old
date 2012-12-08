@@ -35,6 +35,7 @@
           clojure-mode
           dired+
           doc-mode
+          ein
           emms
           ess
           highlight-parentheses
@@ -60,12 +61,12 @@
                              (provide 'obsolete))))
           python-mode
           pymacs
-          ipython
           pylookup
           sml-modeline
           remember
           revive-plus
           js2-mode
+          mu4e
           ))
 
   ;; Packages to install via elpa
@@ -204,42 +205,43 @@
                       "prefix" "site-lisp" "site-lisp"))
               '("compile-semi" "install-semi"))
              :load-path ("site-lisp/semi/"))
-      (:name wanderlust
-       :description "Wanderlust bootstrap."
-       :depends semi
-       :type http-tar
-       ;; :url "file:///home/ryan/temp/wl_2.14.0.orig.tar.gz"
-       :url "http://archive.ubuntu.com/ubuntu/pool/universe/w/wl/wl_2.14.0.orig.tar.gz"
-       :options ("xzf")
-       ;; :type cvs
-       ;; :module "wanderlust"
-       ;; :url ":pserver:anonymous@cvs.m17n.org:/cvs/root"
-       :build
-       (mapcar
-        (lambda (target-and-dirs)
-          (list el-get-emacs
-                (mapcar (lambda (pkg)
-                          (mapcar (lambda (d) `("-L" ,d)) (el-get-load-path pkg)))
-                        (append
-                         '("apel" "flim" "semi")
-                         (when (el-get-package-exists-p "bbdb") (list "bbdb"))))
-		;; Force the coding system to utf-8 so that Emacs
-		;; doesn't try to prompt for it so it can run
-		;; noninteractively.
-		"--eval" (el-get-print-to-string
-			  '(defun select-safe-coding-system (&rest ignored) (quote utf-8)))
-                "--eval" (el-get-print-to-string
-                          '(progn (setq wl-install-utils t)
-                                  (setq wl-info-lang "en")
-                                  (setq wl-news-lang "en")))
+      wanderlust
+      ;; (:name wanderlust
+      ;;  :description "Wanderlust bootstrap."
+      ;;  :depends semi
+      ;;  :type http-tar
+      ;;  ;; :url "file:///home/ryan/temp/wl_2.14.0.orig.tar.gz"
+      ;;  :url "http://archive.ubuntu.com/ubuntu/pool/universe/w/wl/wl_2.14.0.orig.tar.gz"
+      ;;  :options ("xzf")
+      ;;  ;; :type cvs
+      ;;  ;; :module "wanderlust"
+      ;;  ;; :url ":pserver:anonymous@cvs.m17n.org:/cvs/root"
+      ;;  :build
+      ;;  (mapcar
+      ;;   (lambda (target-and-dirs)
+      ;;     (list el-get-emacs
+      ;;           (mapcar (lambda (pkg)
+      ;;                     (mapcar (lambda (d) `("-L" ,d)) (el-get-load-path pkg)))
+      ;;                   (append
+      ;;                    '("apel" "flim" "semi")
+      ;;                    (when (el-get-package-exists-p "bbdb") (list "bbdb"))))
+      ;;   	;; Force the coding system to utf-8 so that Emacs
+      ;;   	;; doesn't try to prompt for it so it can run
+      ;;   	;; noninteractively.
+      ;;   	"--eval" (el-get-print-to-string
+      ;;   		  '(defun select-safe-coding-system (&rest ignored) (quote utf-8)))
+      ;;           "--eval" (el-get-print-to-string
+      ;;                     '(progn (setq wl-install-utils t)
+      ;;                             (setq wl-info-lang "en")
+      ;;                             (setq wl-news-lang "en")))
 
-                (split-string "-batch -q -no-site-file -l WL-MK -f")
-                target-and-dirs))
-        '(("compile-wl-package"  "site-lisp" "icons")
-          ("install-wl-package" "site-lisp" "icons")
-	  ("wl-texinfo-format" "doc")))
-       :info "doc/wl.info"
-       :load-path ("site-lisp/wl" "utils"))
+      ;;           (split-string "-batch -q -no-site-file -l WL-MK -f")
+      ;;           target-and-dirs))
+      ;;   '(("compile-wl-package"  "site-lisp" "icons")
+      ;;     ("install-wl-package" "site-lisp" "icons")
+      ;;     ("wl-texinfo-format" "doc")))
+      ;;  :info "doc/wl.info"
+      ;;  :load-path ("site-lisp/wl" "utils"))
       (:name emacs-goodies-el
              :website "http://packages.debian.org/sid/emacs-goodies-el"
              :description "Miscellaneous add-ons for Emacs"
