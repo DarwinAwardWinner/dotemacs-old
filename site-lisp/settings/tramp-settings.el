@@ -123,27 +123,34 @@ PROGRAMS can be a list of strings, or a single string."
       ;; Neither one is TRAMP
       t)))
 
+(defun tramp-substitute-server-in-variable (var old new)
+  "Substitute NEW in place of OLD in VAR.
+
+OLD and NEW should be TRAMP server specifications, like \"ssh:HOSTNAME:\"."
+  (let* ((oldvec (tramp-dissect-file-name (concat "/" old ":")))
+         (newvec (tramp-dissect-file-name (concat "/" new ":")))
+         (value (eval var))
+         (valuevec (ignore-errors (tramp-dissect-file-name value))))
+    (assert (string= (elt oldvec 3) "") t)
+    (assert (string= (elt newvec 3) "") t)
+    (when (and (tramp-tramp-file-p value)
+               (.first-three-equal oldvec valuevec))
+      (set var
+           (tramp-make-tramp-file-name
+            (elt newvec 0)
+            (elt newvec 1)
+            (elt newvec 2)
+            (elt valuevec 3))))))
+
 (defun tramp-substitute-server (old new)
-  "Substitute NEW in place of OLD in `buffer-file-name' of all buffers.
+  "Substitute NEW in place of OLD in `buffer-file-name' and `default-directory' of all buffers.
 
 OLD and NEW should be TRAMP server specifications, like \"ssh:HOSTNAME:\"."
   (interactive "sOld TRAMP server: \nsNew TRAMP server: ")
-  (let ((oldvec (tramp-dissect-file-name (concat "/" old ":")))
-        (newvec (tramp-dissect-file-name (concat "/" new ":"))))
-    ;; Want no filename here
-    (assert (string= (elt oldvec 3) "") t)
-    (assert (string= (elt newvec 3) "") t)
-    (loop for buf in (buffer-list)
-          do (with-current-buffer buf
-               (when (tramp-tramp-file-p buffer-file-name)
-                 (let ((buffer-tramp-vec (tramp-dissect-file-name buffer-file-name)))
-                   (when (.first-three-equal oldvec buffer-tramp-vec)
-                     (setq buffer-file-name
-                           (tramp-make-tramp-file-name
-                            (elt newvec 0)
-                            (elt newvec 1)
-                            (elt newvec 2)
-                            (elt buffer-tramp-vec 3))))))))))
+  (loop for buf in (buffer-list)
+        do (with-current-buffer buf
+             (mapc (lambda (var) (tramp-substitute-server-in-variable var old new))
+                   '(buffer-file-name default-directory)))))
 
 ;; For some reason this keeps getting unset
 (add-to-list 'tramp-gvfs-methods "sftp")
