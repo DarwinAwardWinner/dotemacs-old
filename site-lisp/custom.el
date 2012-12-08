@@ -44,6 +44,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(R-pager "cat")
  '(ac-comphist-file "/home/ryan/.emacs.d/persistence/ac-comphist.dat")
  '(ac-modes (quote (ess-mode emacs-lisp-mode lisp-interaction-mode c-mode cc-mode c++-mode java-mode malabar-mode clojure-mode scala-mode scheme-mode ocaml-mode tuareg-mode haskell-mode perl-mode cperl-mode sepia-mode python-mode ruby-mode ecmascript-mode javascript-mode js-mode js2-mode php-mode css-mode makefile-mode makefile-gmake-mode sh-mode fortran-mode f90-mode ada-mode xml-mode sgml-mode)))
  '(ack-and-a-half-arguments (quote ("-a")))
@@ -63,7 +64,7 @@
  '(backup-directory-alist (quote ((".*" . "/home/ryan/.emacs.d/persistence/backup-files"))))
  '(backup-file-exclusion-regexps (quote ("^/home/ryan/.emacs.d/persistence/")))
  '(backward-delete-char-untabify-method (quote untabify))
- '(bar-cursor-mode t t (bar-cursor))
+ '(bar-cursor-mode t nil (bar-cursor))
  '(blink-cursor-mode t)
  '(bookmark-default-file "~/.emacs.d/persistence/bookmark")
  '(browse-url-browser-function (quote browse-url-firefox))
@@ -152,7 +153,9 @@
  '(enable-recursive-minibuffers t)
  '(escreen-goto-screen-hook (quote (escreen-enable-number-mode-if-more-than-one-screen)))
  '(escreen-prefix-char "")
+ '(ess-default-style (quote C++))
  '(ess-fancy-comments nil)
+ '(ess-r-args-electric-paren t)
  '(ffap-require-prefix t)
  '(filladapt-turn-on-mode-hooks (quote (lisp-mode-hook emacs-lisp-mode-hook perl-mode-hook)))
  '(flymake-gui-warnings-enabled nil)
@@ -240,6 +243,12 @@
  '(mode-compile-modes-alist (quote ((c-mode cc-compile kill-compilation) (java-mode java-compile kill-compilation) (c++-mode c++-compile kill-compilation) (ada-mode ada-compile kill-compilation) (fortran-mode f77-compile kill-compilation) (dired-mode dired-compile kill-compilation) (emacs-lisp-mode elisp-compile keyboard-quit) (lisp-interaction-mode elisp-compile keyboard-quit) (makefile-mode makefile-compile kill-compilation) (sh-mode sh-compile kill-compilation) (csh-mode csh-compile kill-compilation) (zsh-mode zsh-compile kill-compilation) (perl-mode perl-compile kill-compilation) (cperl-mode perl-compile kill-compilation) (sepia-mode perl-compile kill-compilation) (tcl-mode tcl-compile kill-compilation) (python-mode python-compile kill-compilation) (ruby-mode ruby-compile kill-compilation) (fundamental-mode guess-compile nil) (text-mode guess-compile nil) (indented-text-mode guess-compile nil) (compilation-mode default-compile kill-compilation))))
  '(mouse-wheel-progressive-speed nil)
  '(mouse-yank-at-point nil)
+ '(mu4e-attachment-dir "/home/ryan/Downloads")
+ '(mu4e-get-mail-command "offlineimap -u TTYUI")
+ '(mu4e-maildir "/home/ryan/Mail/Gmail")
+ '(mu4e-mu-binary "/home/ryan/.emacs.d/site-lisp/el-get/mu4e/mu/mu")
+ '(mu4e-my-email-addresses (quote ("rct@thompsonclan.org" "rcthomps@scripps.edu" "r3thomps@ucsd.edu" "darwinawdwinner@gmail.com" "rct2c@virginia.edu")))
+ '(mu4e-sent-messages-behavior (quote delete))
  '(muse-project-alist (quote (("WikiPlanner" ("~/Plans" :default "TaskPool" :major-mode planner-mode :visit-link planner-visit-link) (:base "planner-xhtml" :path "~/Public/Plans")))))
  '(network-manager-disconnect-hook (quote (tramp-cleanup-all-connections)))
  '(octave-auto-indent t)
@@ -283,7 +292,11 @@
  '(org-refile-targets (quote ((org-agenda-files :maxlevel . 10))))
  '(org-refile-use-outline-path t)
  '(org-remember-default-headline "Notes")
- '(org-remember-templates (quote (("Note" 110 "* %^{Description}
+ '(org-remember-templates (quote (("Diary Entry" 100 "* Diary entry for %t
+*** Summary of the day
+*** Things that went well
+*** Things to improve on
+*** Things to do tomorrow" "diary.org" "Diary Entries" nil) ("Note" 110 "* %^{Description}
   %U
   %?" nil nil nil) ("Clipboard note" 99 "* %^{Description}
   %U
@@ -294,13 +307,7 @@
   %?
 " "tasks.org" "Unsorted Tasks" nil) ("TODO unscheduled" 84 "* TODO %^{Description}
   %U
-  %?" "tasks.org" "Unsorted Tasks" nil) ("Event" 101 "* %^{Description}
-  %U
-  %^{When is the event?}T
-  %?" nil "Events" nil) ("Shopping List" 115 "* TODO %^{Item Name}
-  %U
-  %?" "shopping-list.org" "Shopping List" nil) ("Weight Log" 119 "* %^{Scale Reading (lbs)} pounds, on %u
-  %?%!" "excercise.org" "Weight Log" nil))))
+  %?" "tasks.org" "Unsorted Tasks" nil))))
  '(org-return-follows-link t)
  '(org-reverse-note-order t)
  '(org-support-shift-select t)
@@ -355,7 +362,7 @@ done_testing();")
  '(ropemacs-completing-read-function (quote completing-read))
  '(ropemacs-enable-shortcuts nil)
  '(ropemacs-guess-project t)
- '(safe-local-variable-values (quote ((eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook" (add-hook (quote write-contents-functions) (lambda nil (delete-trailing-whitespace) nil)) (require (quote whitespace)) "Sometimes the mode needs to be toggled off and on." (whitespace-mode 0) (whitespace-mode 1)) (outline-minor-mode) (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook" (add-hook (quote write-contents-functions) (lambda nil (delete-trailing-whitespace (point-min) (point-max)) (untabify (point-min) (point-max)) nil)) (require (quote whitespace)) "Sometimes the mode needs to be toggled off and on." (whitespace-mode 0) (whitespace-mode 1)) (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook" (add-hook (quote write-contents-functions) (lambda nil (delete-trailing-whitespace (point-min) (point-max)) nil)) (require (quote whitespace)) "Sometimes the mode needs to be toggled off and on." (whitespace-mode 0) (whitespace-mode 1)) (eval ignore-errors (add-hook (quote write-contents-functions) (lambda nil (delete-trailing-whitespace (point-min) (point-max)) nil)) (require (quote whitespace)) "Sometimes the mode needs to be toggled off and on." (whitespace-mode 0) (whitespace-mode 1)) (eval progn (add-hook (quote before-save-hook) (quote delete-trailing-whitespace)) (set-face-attribute (quote whitespace-line) nil :background "red1" :foreground "yellow" :weight (quote bold)) (set-face-attribute (quote whitespace-tab) nil :background "red1" :foreground "yellow" :weight (quote bold)) (require (quote whitespace)) (whitespace-mode 0) (whitespace-mode 1)) (eval ignore-errors (add-hook (quote before-save-hook) (quote delete-trailing-whitespace)) (require (quote whitespace)) (set-face-attribute (quote whitespace-line) nil :background "red1" :foreground "yellow" :weight (quote bold)) (set-face-attribute (quote whitespace-tab) nil :background "red1" :foreground "yellow" :weight (quote bold)) "Need to ensure that whitespace mode is turned off and on again. This guaranteees that the new values of the whitespace-related variables will take effect." (whitespace-mode 0) (whitespace-mode 1)) (eval progn (add-hook (quote before-save-hook) (quote delete-trailing-whitespace)) (require (quote whitespace)) (set-face-attribute (quote whitespace-line) nil :background "red1" :foreground "yellow" :weight (quote bold)) (set-face-attribute (quote whitespace-tab) nil :background "red1" :foreground "yellow" :weight (quote bold)) "Need to ensure that whitespace mode is turned off and on again. This guaranteees that the new values of the whitespace-related variables will take effect." (whitespace-mode 0) (whitespace-mode 1)) (eval progn (add-hook (quote before-save-hook) (quote delete-trailing-whitespace)) (set-face-attribute (quote whitespace-line) nil :background "red1" :foreground "yellow" :weight (quote bold)) (set-face-attribute (quote whitespace-tab) nil :background "red1" :foreground "yellow" :weight (quote bold)) (require (quote whitespace)) "Need to ensure that whitespace mode is turned off and on again. This guaranteees that the new values of the whitespace-related variables will take effect." (whitespace-mode 0) (whitespace-mode 1)) (require-final-newline . t) (py-indent-offset . 8) (major-mode . markdown) (eval set-face-attribute (quote whitespace-line) nil :background "red1" :foreground "yellow" :weight (quote bold)) (eval set-face-attribute (quote whitespace-tab) nil :background "red1" :foreground "yellow" :weight (quote bold)) (whitespace-style face trailing lines-tail) (whitespace-line-column . 80) (eval require (quote whitespace)) (org-time-stamp-custom-formats "<%Y-%m-%d %a>" . "<%I:%M %p>") (org-time-stamp-custom-formats "<%m/%d/%y %a>" . "<%m/%d/%y %a %H:%M>") (org-time-stamp-custom-formats quote ("<%m/%d/%y %a>" . "<%m/%d/%y %a %H:%M>")) (folded-file . t) (TeX-master . cv\.ltx) (TeX-master . cv\.tex) (TeX-master . t))))
+ '(safe-local-variable-values (quote ((whitespace-style face tabs spaces trailing lines space-before-tab::space newline indentation::space empty space-after-tab::space space-mark tab-mark newline-mark) (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook" (add-hook (quote write-contents-functions) (lambda nil (delete-trailing-whitespace) nil)) (require (quote whitespace)) "Sometimes the mode needs to be toggled off and on." (whitespace-mode 0) (whitespace-mode 1)) (outline-minor-mode) (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook" (add-hook (quote write-contents-functions) (lambda nil (delete-trailing-whitespace (point-min) (point-max)) (untabify (point-min) (point-max)) nil)) (require (quote whitespace)) "Sometimes the mode needs to be toggled off and on." (whitespace-mode 0) (whitespace-mode 1)) (eval ignore-errors "Write-contents-functions is a buffer-local alternative to before-save-hook" (add-hook (quote write-contents-functions) (lambda nil (delete-trailing-whitespace (point-min) (point-max)) nil)) (require (quote whitespace)) "Sometimes the mode needs to be toggled off and on." (whitespace-mode 0) (whitespace-mode 1)) (eval ignore-errors (add-hook (quote write-contents-functions) (lambda nil (delete-trailing-whitespace (point-min) (point-max)) nil)) (require (quote whitespace)) "Sometimes the mode needs to be toggled off and on." (whitespace-mode 0) (whitespace-mode 1)) (eval progn (add-hook (quote before-save-hook) (quote delete-trailing-whitespace)) (set-face-attribute (quote whitespace-line) nil :background "red1" :foreground "yellow" :weight (quote bold)) (set-face-attribute (quote whitespace-tab) nil :background "red1" :foreground "yellow" :weight (quote bold)) (require (quote whitespace)) (whitespace-mode 0) (whitespace-mode 1)) (eval ignore-errors (add-hook (quote before-save-hook) (quote delete-trailing-whitespace)) (require (quote whitespace)) (set-face-attribute (quote whitespace-line) nil :background "red1" :foreground "yellow" :weight (quote bold)) (set-face-attribute (quote whitespace-tab) nil :background "red1" :foreground "yellow" :weight (quote bold)) "Need to ensure that whitespace mode is turned off and on again. This guaranteees that the new values of the whitespace-related variables will take effect." (whitespace-mode 0) (whitespace-mode 1)) (eval progn (add-hook (quote before-save-hook) (quote delete-trailing-whitespace)) (require (quote whitespace)) (set-face-attribute (quote whitespace-line) nil :background "red1" :foreground "yellow" :weight (quote bold)) (set-face-attribute (quote whitespace-tab) nil :background "red1" :foreground "yellow" :weight (quote bold)) "Need to ensure that whitespace mode is turned off and on again. This guaranteees that the new values of the whitespace-related variables will take effect." (whitespace-mode 0) (whitespace-mode 1)) (eval progn (add-hook (quote before-save-hook) (quote delete-trailing-whitespace)) (set-face-attribute (quote whitespace-line) nil :background "red1" :foreground "yellow" :weight (quote bold)) (set-face-attribute (quote whitespace-tab) nil :background "red1" :foreground "yellow" :weight (quote bold)) (require (quote whitespace)) "Need to ensure that whitespace mode is turned off and on again. This guaranteees that the new values of the whitespace-related variables will take effect." (whitespace-mode 0) (whitespace-mode 1)) (require-final-newline . t) (py-indent-offset . 8) (major-mode . markdown) (eval set-face-attribute (quote whitespace-line) nil :background "red1" :foreground "yellow" :weight (quote bold)) (eval set-face-attribute (quote whitespace-tab) nil :background "red1" :foreground "yellow" :weight (quote bold)) (whitespace-style face trailing lines-tail) (whitespace-line-column . 80) (eval require (quote whitespace)) (org-time-stamp-custom-formats "<%Y-%m-%d %a>" . "<%I:%M %p>") (org-time-stamp-custom-formats "<%m/%d/%y %a>" . "<%m/%d/%y %a %H:%M>") (org-time-stamp-custom-formats quote ("<%m/%d/%y %a>" . "<%m/%d/%y %a %H:%M>")) (folded-file . t) (TeX-master . cv\.ltx) (TeX-master . cv\.tex) (TeX-master . t))))
  '(save-abbrevs (quote silently))
  '(save-interprogram-paste-before-kill t)
  '(save-place t nil (saveplace))

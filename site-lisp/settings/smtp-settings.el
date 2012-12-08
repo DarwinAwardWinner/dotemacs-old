@@ -1,3 +1,4 @@
+(require 'smtpmail)
 (setq send-mail-function 'smtpmail-send-it
       message-send-mail-function 'smtpmail-send-it
       smtpmail-starttls-credentials
@@ -8,4 +9,3 @@
       smtpmail-smtp-server "smtp.gmail.com"
       smtpmail-smtp-service 587
       smtpmail-debug-info t)
-(require 'smtpmail)

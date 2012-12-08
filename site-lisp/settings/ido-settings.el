@@ -7,7 +7,7 @@
 (defadvice ido-complete-space (around handle-require-match activate)
   "If require-match is nil, always insert space."
   (if (bound-and-true-p require-match)
-      (ido-complete)
+      ad-do-it
     (insert " ")))
 
 (eval-after-load "mic-paren"
